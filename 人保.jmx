@@ -1333,7 +1333,7 @@ vars.put(&quot;base64&quot;,code);
               <stringProp name="filename"></stringProp>
               <stringProp name="script">import com.image.util.*;
 
-String code = ImageUtil.base64(&quot;D:/myimage/TR.jpg&quot;);
+String code = ImageUtil.base64(&quot;D:/samples2/008.jpg&quot;);
 vars.put(&quot;base64&quot;,code);
 
 
@@ -1341,7 +1341,7 @@ vars.put(&quot;base64&quot;,code);
             </BeanShellPreProcessor>
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取imageurl" enabled="true">
-              <stringProp name="JSONPostProcessor.referenceNames">imgUrl</stringProp>
+              <stringProp name="JSONPostProcessor.referenceNames">key</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.key</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
@@ -1355,7 +1355,7 @@ vars.put(&quot;base64&quot;,code);
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;imgUrl&quot;:&quot;${imgUrl}&quot;&#xd;
+	&quot;imgUrl&quot;:&quot;${key}&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -1365,7 +1365,7 @@ vars.put(&quot;base64&quot;,code);
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/business/rb/test</stringProp>
+          <stringProp name="HTTPSampler.path">/business/rb/submit</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
