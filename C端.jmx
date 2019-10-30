@@ -16,9 +16,9 @@
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
-        <stringProp name="HTTPSampler.domain">192.168.5.111</stringProp>
-        <stringProp name="HTTPSampler.port"></stringProp>
-        <stringProp name="HTTPSampler.protocol">http</stringProp>
+        <stringProp name="HTTPSampler.domain">api.flins.com.cn</stringProp>
+        <stringProp name="HTTPSampler.port">443</stringProp>
+        <stringProp name="HTTPSampler.protocol">https</stringProp>
         <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
         <stringProp name="HTTPSampler.path"></stringProp>
         <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
@@ -34,7 +34,7 @@
           </elementProp>
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">token</stringProp>
-            <stringProp name="Header.value">6b7b8bcfdb2d459886d01098d33a96ad</stringProp>
+            <stringProp name="Header.value">3370926bcdcc4689b0a339f4973e74c3 </stringProp>
           </elementProp>
         </collectionProp>
       </HeaderManager>
@@ -151,7 +151,7 @@
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="未做问卷-提交问卷" enabled="false">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="未做问卷-提交问卷" enabled="true">
           <stringProp name="IfController.condition">${data}==null</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
         </IfController>
@@ -1036,7 +1036,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询最新测评结果-甲状腺" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询最新测评结果-甲状腺" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1075,7 +1075,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询会员套餐" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询会员套餐" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1146,7 +1146,7 @@ vars.put(&quot;result&quot;,result);
           </BeanShellPostProcessor>
           <hashTree/>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="非会员" enabled="false">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="非会员" enabled="true">
           <stringProp name="IfController.condition">${result}==true</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
         </IfController>
@@ -1191,7 +1191,7 @@ vars.put(&quot;result&quot;,result);
             <hashTree/>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="是会员" enabled="false">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="是会员" enabled="true">
           <stringProp name="IfController.condition">${result}==false</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
         </IfController>
@@ -1400,70 +1400,6 @@ vars.put(&quot;base64&quot;,code);
             <hashTree/>
           </hashTree>
         </hashTree>
-        <kg.apc.jmeter.perfmon.PerfMonCollector guiclass="kg.apc.jmeter.vizualizers.PerfMonGui" testclass="kg.apc.jmeter.perfmon.PerfMonCollector" testname="jp@gc - PerfMon Metrics Collector" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-          <longProp name="interval_grouping">1000</longProp>
-          <boolProp name="graph_aggregated">false</boolProp>
-          <stringProp name="include_sample_labels"></stringProp>
-          <stringProp name="exclude_sample_labels"></stringProp>
-          <stringProp name="start_offset"></stringProp>
-          <stringProp name="end_offset"></stringProp>
-          <boolProp name="include_checkbox_state">false</boolProp>
-          <boolProp name="exclude_checkbox_state">false</boolProp>
-          <collectionProp name="metricConnections">
-            <collectionProp name="-1873510009">
-              <stringProp name="-2047579142">192.168.5.112</stringProp>
-              <stringProp name="1600768">4444</stringProp>
-              <stringProp name="66952">CPU</stringProp>
-              <stringProp name="0"></stringProp>
-            </collectionProp>
-            <collectionProp name="120742966">
-              <stringProp name="-2047579142">192.168.5.112</stringProp>
-              <stringProp name="1600768">4444</stringProp>
-              <stringProp name="-1993889503">Memory</stringProp>
-              <stringProp name="0"></stringProp>
-            </collectionProp>
-            <collectionProp name="233082982">
-              <stringProp name="-2047579142">192.168.5.112</stringProp>
-              <stringProp name="1600768">4444</stringProp>
-              <stringProp name="-274342153">Network I/O</stringProp>
-              <stringProp name="0"></stringProp>
-            </collectionProp>
-          </collectionProp>
-        </kg.apc.jmeter.perfmon.PerfMonCollector>
-        <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
@@ -6939,2326 +6875,38 @@ vars.put(&quot;base64&quot;,code);
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="线程组" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="获取测试题" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">30</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取甲状腺测试题-女性" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;log_id&quot;: 3356264035826139524,&#xd;
-	&quot;words_result&quot;: [{&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.996318,&#xd;
-			&quot;min&quot;: 0.985194,&#xd;
-			&quot;variance&quot;: 1.9E-5&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;超声所见:(单位:CM)&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 118,&#xd;
-			&quot;left&quot;: 26,&#xd;
-			&quot;width&quot;: 120,&#xd;
-			&quot;height&quot;: 15&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;超&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 26,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 38,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;所&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 51,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;见&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 64,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;:&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 71,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 84,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;单&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 94,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;位&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 102,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;:&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 114,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;C&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 127,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;M&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 131,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 139,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.945692,&#xd;
-			&quot;min&quot;: 0.444949,&#xd;
-			&quot;variance&quot;: 0.016215&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;甲状腺右侧叶大小1.751.69,左侧叶大小1.82*1.6.峡部厚0.23边界清形态规内部回&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 129,&#xd;
-			&quot;left&quot;: 50,&#xd;
-			&quot;width&quot;: 397,&#xd;
-			&quot;height&quot;: 16&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;甲&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 50,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;状&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 59,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;腺&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 68,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;右&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 81,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 90,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;叶&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 99,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 108,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;小&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 117,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 124,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 128,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;7&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 133,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;5&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 137,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 151,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 155,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 159,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;9&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 164,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 168,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;左&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 179,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 187,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;叶&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 201,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 210,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;小&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 219,&#xd;
-				&quot;width&quot;: 5,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 222,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 231,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;8&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 235,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;2&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 239,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 244,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 248,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 253,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 259,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 271,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;峡&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 282,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 290,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;厚&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 299,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 307,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 311,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;2&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 315,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;3&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 324,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;边&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 339,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;界&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 348,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;清&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 357,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;形&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 375,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;态&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 388,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;规&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 397,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;内&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 415,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 428,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;回&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 437,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.947159,&#xd;
-			&quot;min&quot;: 0.512557,&#xd;
-			&quot;variance&quot;: 0.011913&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;声欠均,见中低回声团数枚,右侧叶大者1.16×0.5(中部囊实性)、.03*0.57(中部,囊&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 140,&#xd;
-			&quot;left&quot;: 31,&#xd;
-			&quot;width&quot;: 399,&#xd;
-			&quot;height&quot;: 17&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 31,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;欠&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 41,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;均&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 51,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 59,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;见&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 65,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;中&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 75,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;低&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 85,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;回&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 95,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 104,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;团&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 114,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;数&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 124,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;枚&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 133,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 141,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;右&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 153,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 163,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;叶&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 172,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 182,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;者&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 187,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 195,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 200,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 205,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 210,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;×&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 214,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 219,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 224,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;5&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 236,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 244,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;中&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 250,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 260,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;囊&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 280,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;实&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 290,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 299,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 307,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;、&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 312,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 327,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 332,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;3&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 337,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 347,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 351,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 356,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;5&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 361,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;7&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 366,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 376,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;中&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 382,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 392,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 400,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;囊&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 412,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.968268,&#xd;
-			&quot;min&quot;: 0.500792,&#xd;
-			&quot;variance&quot;: 0.006256&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;性),左侧叶大者1.73*1.28(下极,囊实性)1.03*0.60(近峡部,实性为主),边界清,部分&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 155,&#xd;
-			&quot;left&quot;: 32,&#xd;
-			&quot;width&quot;: 415,&#xd;
-			&quot;height&quot;: 15&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 32,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 41,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 49,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;左&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 61,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 71,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;叶&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 79,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 90,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;者&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 100,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 106,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 110,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;7&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 117,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;3&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 121,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 128,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 132,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 135,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;2&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 142,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;8&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 146,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 157,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;下&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 162,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;极&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 173,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 179,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;囊&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 191,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;实&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 201,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 209,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 219,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 233,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 238,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 244,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;3&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 251,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 255,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 258,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 262,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 269,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 273,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 284,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;近&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 288,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;峡&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 299,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 310,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 316,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;实&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 328,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 339,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;为&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 350,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;主&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 357,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 367,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 374,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;边&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 386,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;界&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 397,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;清&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 408,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 413,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 426,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 436,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.947447,&#xd;
-			&quot;min&quot;: 0.617356,&#xd;
-			&quot;variance&quot;: 0.008281&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;见细点状强回声,少量血流分布。甲状腺整体血流分布尚正常&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 168,&#xd;
-			&quot;left&quot;: 32,&#xd;
-			&quot;width&quot;: 263,&#xd;
-			&quot;height&quot;: 13&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;见&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 32,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;细&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 43,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;点&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 54,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;状&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 61,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;强&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 72,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;回&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 79,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 90,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 100,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;少&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 112,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;量&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 119,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;血&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 130,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;流&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 137,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 148,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;布&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 159,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;。&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 165,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;甲&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 177,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;状&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 184,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;腺&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 195,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;整&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 203,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;体&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 214,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;血&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 224,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;流&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 232,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 243,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;布&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 254,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;尚&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 261,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;正&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 272,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;常&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 279,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.952519,&#xd;
-			&quot;min&quot;: 0.384523,&#xd;
-			&quot;variance&quot;: 0.012915&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;双侧颈部见低回声团数个,大者1.68*0.87(下),边界清呈淋巴结构,内部血流不增多&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 179,&#xd;
-			&quot;left&quot;: 46,&#xd;
-			&quot;width&quot;: 402,&#xd;
-			&quot;height&quot;: 13&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;双&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 53,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 60,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;颈&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 71,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 83,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;见&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 90,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;低&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 101,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;回&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 109,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 120,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;团&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 127,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;数&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 139,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;个&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 150,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 156,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 168,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;者&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 176,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 182,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 186,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 193,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;8&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 197,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 201,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 208,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 212,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;8&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 216,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;7&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 221,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 231,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;下&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 247,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 253,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 265,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;边&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 273,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;界&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 284,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;清&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 296,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;呈&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 314,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;淋&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 325,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;巴&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 333,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;结&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 344,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;构&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 351,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 361,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;内&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 374,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 381,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;血&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 392,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;流&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 404,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;不&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 415,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;增&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 422,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;多&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 433,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.999451,&#xd;
-			&quot;min&quot;: 0.99755,&#xd;
-			&quot;variance&quot;: 1.0E-6&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;超声提示:&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 321,&#xd;
-			&quot;left&quot;: 20,&#xd;
-			&quot;width&quot;: 48,&#xd;
-			&quot;height&quot;: 13&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;超&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 20,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 30,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;提&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 41,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;示&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 52,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;:&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 62,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.920873,&#xd;
-			&quot;min&quot;: 0.502915,&#xd;
-			&quot;variance&quot;: 0.019597&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;甲状腺多发性结节(部分件微钙化),超声T-RA分类Ⅲ类&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 336,&#xd;
-			&quot;left&quot;: 38,&#xd;
-			&quot;width&quot;: 279,&#xd;
-			&quot;height&quot;: 15&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;甲&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 42,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;状&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 55,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;腺&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 63,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;多&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 76,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;发&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 84,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 93,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;结&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 101,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;节&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 114,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 125,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 130,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 143,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;件&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 151,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;微&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 160,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;钙&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 173,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;化&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 181,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 188,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 196,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;超&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 210,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 219,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;T&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 226,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;-&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 238,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;R&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 243,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;A&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 247,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 269,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;类&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 278,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;Ⅲ&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 289,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;类&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 307,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.996629,&#xd;
-			&quot;min&quot;: 0.983859,&#xd;
-			&quot;variance&quot;: 1.8E-5&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;双侧颈部淋巴结轻度肿大&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 349,&#xd;
-			&quot;left&quot;: 39,&#xd;
-			&quot;width&quot;: 112,&#xd;
-			&quot;height&quot;: 13&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;双&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 42,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 54,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;颈&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 65,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 73,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;淋&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 84,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;巴&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 92,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;结&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 103,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;轻&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 111,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;度&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 122,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;肿&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 130,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 141,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}],&#xd;
-	&quot;words_result_num&quot;: 9,&#xd;
-	&quot;direction&quot;: 0&#xd;
+	&quot;type&quot;: &quot;thyroid&quot;,&#xd;
+	&quot;sex&quot;: 1&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">192.168.5.111</stringProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/thyroid/isThyroid</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/customer/qa/operlist</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -9268,2324 +6916,24 @@ vars.put(&quot;base64&quot;,code);
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
-        <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="false">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-	&quot;log_id&quot;: 3356264035826139524,&#xd;
-	&quot;words_result&quot;: [{&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.996318,&#xd;
-			&quot;min&quot;: 0.985194,&#xd;
-			&quot;variance&quot;: 1.9E-5&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;超声所见:(单位:CM)&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 118,&#xd;
-			&quot;left&quot;: 26,&#xd;
-			&quot;width&quot;: 120,&#xd;
-			&quot;height&quot;: 15&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;超&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 26,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 38,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;所&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 51,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;见&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 64,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;:&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 71,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 84,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;单&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 94,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;位&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 102,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;:&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 114,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;C&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 127,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;M&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 131,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 118,&#xd;
-				&quot;left&quot;: 139,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.945692,&#xd;
-			&quot;min&quot;: 0.444949,&#xd;
-			&quot;variance&quot;: 0.016215&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;甲状腺右侧叶大小1.751.69,左侧叶大小1.82*1.6.峡部厚0.23边界清形态规内部回&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 129,&#xd;
-			&quot;left&quot;: 50,&#xd;
-			&quot;width&quot;: 397,&#xd;
-			&quot;height&quot;: 16&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;甲&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 50,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;状&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 59,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;腺&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 68,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;右&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 81,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 90,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;叶&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 99,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 108,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;小&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 117,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 124,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 128,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;7&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 133,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;5&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 137,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 151,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 155,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 159,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;9&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 164,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 168,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;左&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 179,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 187,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;叶&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 201,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 210,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;小&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 219,&#xd;
-				&quot;width&quot;: 5,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 222,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 231,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;8&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 235,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;2&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 239,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 244,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 248,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 253,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 259,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 271,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;峡&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 282,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 290,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;厚&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 299,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 307,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 311,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;2&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 315,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;3&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 324,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;边&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 339,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;界&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 348,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;清&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 357,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;形&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 375,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;态&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 388,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;规&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 397,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;内&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 415,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 428,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;回&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 129,&#xd;
-				&quot;left&quot;: 437,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 16&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.947159,&#xd;
-			&quot;min&quot;: 0.512557,&#xd;
-			&quot;variance&quot;: 0.011913&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;声欠均,见中低回声团数枚,右侧叶大者1.16×0.5(中部囊实性)、.03*0.57(中部,囊&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 140,&#xd;
-			&quot;left&quot;: 31,&#xd;
-			&quot;width&quot;: 399,&#xd;
-			&quot;height&quot;: 17&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 31,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;欠&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 41,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;均&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 51,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 59,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;见&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 65,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;中&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 75,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;低&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 85,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;回&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 95,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 104,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;团&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 114,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;数&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 124,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;枚&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 133,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 141,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;右&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 153,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 163,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;叶&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 172,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 182,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;者&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 187,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 195,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 200,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 205,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 210,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;×&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 214,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 219,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 224,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;5&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 236,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 244,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;中&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 250,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 260,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;囊&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 280,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;实&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 290,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 299,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 307,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;、&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 312,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 327,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 332,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;3&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 337,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 347,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 351,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 356,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;5&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 361,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;7&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 366,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 376,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;中&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 382,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 392,&#xd;
-				&quot;width&quot;: 11,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 400,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;囊&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 140,&#xd;
-				&quot;left&quot;: 412,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 17&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.968268,&#xd;
-			&quot;min&quot;: 0.500792,&#xd;
-			&quot;variance&quot;: 0.006256&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;性),左侧叶大者1.73*1.28(下极,囊实性)1.03*0.60(近峡部,实性为主),边界清,部分&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 155,&#xd;
-			&quot;left&quot;: 32,&#xd;
-			&quot;width&quot;: 415,&#xd;
-			&quot;height&quot;: 15&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 32,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 41,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 49,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;左&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 61,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 71,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;叶&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 79,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 90,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;者&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 100,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 106,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 110,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;7&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 117,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;3&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 121,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 128,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 132,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 135,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;2&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 142,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;8&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 146,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 157,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;下&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 157,&#xd;
-				&quot;left&quot;: 162,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;极&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 173,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 179,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;囊&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 191,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;实&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 201,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 209,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 219,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 233,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 238,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 244,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;3&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 251,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 255,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 258,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 262,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 269,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 273,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 284,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;近&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 288,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;峡&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 299,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 310,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 316,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;实&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 328,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 339,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;为&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 350,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;主&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 156,&#xd;
-				&quot;left&quot;: 357,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 12&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 367,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 374,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;边&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 386,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;界&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 397,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;清&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 408,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 413,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 426,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 155,&#xd;
-				&quot;left&quot;: 436,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.947447,&#xd;
-			&quot;min&quot;: 0.617356,&#xd;
-			&quot;variance&quot;: 0.008281&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;见细点状强回声,少量血流分布。甲状腺整体血流分布尚正常&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 168,&#xd;
-			&quot;left&quot;: 32,&#xd;
-			&quot;width&quot;: 263,&#xd;
-			&quot;height&quot;: 13&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;见&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 32,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;细&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 43,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;点&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 54,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;状&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 61,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;强&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 72,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;回&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 79,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 90,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 100,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;少&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 112,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;量&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 119,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;血&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 130,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;流&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 137,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 148,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;布&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 159,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;。&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 165,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;甲&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 177,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;状&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 184,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;腺&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 195,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;整&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 203,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;体&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 214,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;血&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 224,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;流&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 232,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 243,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;布&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 254,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;尚&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 261,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;正&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 272,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;常&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 168,&#xd;
-				&quot;left&quot;: 279,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.952519,&#xd;
-			&quot;min&quot;: 0.384523,&#xd;
-			&quot;variance&quot;: 0.012915&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;双侧颈部见低回声团数个,大者1.68*0.87(下),边界清呈淋巴结构,内部血流不增多&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 179,&#xd;
-			&quot;left&quot;: 46,&#xd;
-			&quot;width&quot;: 402,&#xd;
-			&quot;height&quot;: 13&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;双&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 53,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 60,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;颈&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 71,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 83,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;见&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 90,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;低&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 101,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;回&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 109,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 120,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;团&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 127,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;数&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 139,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;个&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 150,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 156,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 168,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;者&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 176,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;1&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 182,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 186,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;6&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 193,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;8&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 197,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;*&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 201,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;0&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 208,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;.&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 212,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;8&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 216,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;7&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 221,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 231,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;下&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 247,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 253,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 265,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;边&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 273,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;界&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 284,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;清&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 296,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;呈&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 314,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;淋&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 325,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;巴&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 333,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;结&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 344,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;构&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 351,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 361,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;内&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 374,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 381,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;血&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 392,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;流&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 404,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;不&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 415,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;增&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 422,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;多&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 179,&#xd;
-				&quot;left&quot;: 433,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.999451,&#xd;
-			&quot;min&quot;: 0.99755,&#xd;
-			&quot;variance&quot;: 1.0E-6&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;超声提示:&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 321,&#xd;
-			&quot;left&quot;: 20,&#xd;
-			&quot;width&quot;: 48,&#xd;
-			&quot;height&quot;: 13&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;超&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 20,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 30,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;提&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 41,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;示&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 52,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;:&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 321,&#xd;
-				&quot;left&quot;: 62,&#xd;
-				&quot;width&quot;: 6,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.920873,&#xd;
-			&quot;min&quot;: 0.502915,&#xd;
-			&quot;variance&quot;: 0.019597&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;甲状腺多发性结节(部分件微钙化),超声T-RA分类Ⅲ类&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 336,&#xd;
-			&quot;left&quot;: 38,&#xd;
-			&quot;width&quot;: 279,&#xd;
-			&quot;height&quot;: 15&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;甲&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 42,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;状&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 55,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;腺&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 63,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;多&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 76,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;发&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 84,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;性&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 93,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;结&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 101,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;节&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 114,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;(&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 125,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 130,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 143,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;件&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 151,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;微&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 160,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;钙&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 173,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;化&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 181,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;)&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 188,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;,&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 196,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;超&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 210,&#xd;
-				&quot;width&quot;: 10,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;声&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 219,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;T&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 226,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;-&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 238,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;R&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 243,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;A&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 247,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;分&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 269,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;类&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 278,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;Ⅲ&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 289,&#xd;
-				&quot;width&quot;: 7,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;类&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 336,&#xd;
-				&quot;left&quot;: 307,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 15&#xd;
-			}&#xd;
-		}]&#xd;
-	}, {&#xd;
-		&quot;probability&quot;: {&#xd;
-			&quot;average&quot;: 0.996629,&#xd;
-			&quot;min&quot;: 0.983859,&#xd;
-			&quot;variance&quot;: 1.8E-5&#xd;
-		},&#xd;
-		&quot;words&quot;: &quot;双侧颈部淋巴结轻度肿大&quot;,&#xd;
-		&quot;location&quot;: {&#xd;
-			&quot;top&quot;: 349,&#xd;
-			&quot;left&quot;: 39,&#xd;
-			&quot;width&quot;: 112,&#xd;
-			&quot;height&quot;: 13&#xd;
-		},&#xd;
-		&quot;chars&quot;: [{&#xd;
-			&quot;char&quot;: &quot;双&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 42,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;侧&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 54,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;颈&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 65,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;部&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 73,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;淋&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 84,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;巴&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 92,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;结&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 103,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;轻&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 111,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;度&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 122,&#xd;
-				&quot;width&quot;: 9,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;肿&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 130,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}, {&#xd;
-			&quot;char&quot;: &quot;大&quot;,&#xd;
-			&quot;location&quot;: {&#xd;
-				&quot;top&quot;: 349,&#xd;
-				&quot;left&quot;: 141,&#xd;
-				&quot;width&quot;: 8,&#xd;
-				&quot;height&quot;: 13&#xd;
-			}&#xd;
-		}]&#xd;
-	}],&#xd;
-	&quot;words_result_num&quot;: 9,&#xd;
-	&quot;direction&quot;: 0&#xd;
-}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
             </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">192.168.5.90</stringProp>
-          <stringProp name="HTTPSampler.port">5676</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/yidiansan</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取题目id" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">id</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
@@ -12024,6 +7372,799 @@ vars.put(&quot;base64&quot;,code);
               <hostname>true</hostname>
               <threadCounts>true</threadCounts>
               <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Boss接口" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">token</stringProp>
+              <stringProp name="Header.value">${token}</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取验证码" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;evImgUploadIds&quot;: &quot;[]&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/ev/ocr/batchreceive</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="用户登录" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;account&quot;: &quot;admin&quot;,&#xd;
+	&quot;pwd&quot;:&quot;e10adc3949ba59abbe56e057f20f883e&quot;,&#xd;
+	&quot;captchaToken&quot;:&quot;&quot;,&#xd;
+	&quot;captcha&quot;:&quot;&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">/boss/auth/login</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取token" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.token</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
+            <boolProp name="displayJMeterProperties">false</boolProp>
+            <boolProp name="displayJMeterVariables">true</boolProp>
+            <boolProp name="displaySamplerProperties">true</boolProp>
+            <boolProp name="displaySystemProperties">false</boolProp>
+          </DebugPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="创建用户" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;account&quot;: &quot;andyzhang&quot;,&#xd;
+	&quot;pwd&quot;:&quot;0c8abdb962f042d1857c66dd26b0c87b&quot;,&#xd;
+	&quot;name&quot;:&quot;张安迪&quot;,&#xd;
+   	 &quot;roleIds&quot;:&quot;1,2,3&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/user/create</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="用户列表" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;account&quot;: &quot;&quot;,&#xd;
+	&quot;name&quot;: &quot;&quot;,&#xd;
+	&quot;page&quot;: {&#xd;
+		&quot;currentPage&quot;: 1,&#xd;
+		&quot;pageSize&quot;: 10&#xd;
+	}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/user/list</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="修改密码(自己)" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;oriPwd&quot;:&quot;c33367701511b4f6020ec61ded352059&quot;,&#xd;
+	&quot;pwd&quot;:&quot;e10adc3949ba59abbe56e057f20f883e&quot;,&#xd;
+	&quot;confirmPwd&quot;:&quot;e10adc3949ba59abbe56e057f20f883e&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/user/updatepwd</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="重置密码(管理员)" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;id&quot;:1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/user/resetpwd</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="新增角色" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;name&quot;: &quot;OCR处理&quot;,&#xd;
+	&quot;isAdmin&quot;: true,&#xd;
+	&quot;code&quot;:  &quot;OCRchuli&quot;,&#xd;
+	&quot;sortNo&quot;: 3,&#xd;
+	&quot;permissions&quot;: &quot;89&quot;&#xd;
+}&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">/boss/role/save</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="角色列表(有分页)" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;isAdmin&quot;: false,&#xd;
+	&quot;name&quot;: &quot;经理&quot;,&#xd;
+	&quot;page&quot;: {&#xd;
+		&quot;currentPage&quot;: 1,&#xd;
+		&quot;pageSize&quot;: 10&#xd;
+	}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/role/pagelist</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="角色列表(无分页)" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/role/list</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="用户的角色列表" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;userId&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/role/user/list</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="更新用户角色" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;userId&quot;: 1,&#xd;
+	&quot;roleIds&quot;: &quot;2,3,4,5&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/user/setroles</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="权限刷新" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">boss/permission/loadpermission</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">
+
+
+
+
+</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="权限列表(有分页)" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;type&quot;: 3,&#xd;
+	&quot;name&quot;: &quot;用户&quot;,&#xd;
+	&quot;page&quot;: {&#xd;
+		&quot;currentPage&quot;: 1,&#xd;
+		&quot;pageSize&quot;: 10&#xd;
+	}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/permission/pagelist</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="权限列表(无分页)" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/permission/list</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="角色赋权" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;roleId&quot;: 1,&#xd;
+	&quot;permissions&quot;: &quot;1,3,4&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/permission/setpermission</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="角色的权限列表" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+		&quot;roleId&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/auth/getAuthorizationData</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="删除用户" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;id&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/user/delete</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="用户退出登录" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/auth/logout</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="角色删除" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;id&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/role/delete</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="OCR批量领取" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/ev/ocr/batchreceive</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="OCR待处理列表" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;page&quot;: {&#xd;
+		&quot;pageSize&quot;: 10,&#xd;
+		&quot;currentPage&quot;: 1&#xd;
+	},&#xd;
+	&quot;evRecordNo&quot;: &quot;&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/boss/ev/ocr/unmanagelist</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取总页码" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">totalPage</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.totalPage</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="判断总页码数是否大于1" enabled="true">
+          <stringProp name="IfController.condition">${totalPage} &gt;1</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="OCR待处理列表(最后一页)" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;page&quot;: {&#xd;
+		&quot;pageSize&quot;: 10,&#xd;
+		&quot;currentPage&quot;: &quot;${totalPage}&quot;&#xd;
+	},&#xd;
+	&quot;evRecordNo&quot;: &quot;&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/boss/ev/ocr/unmanagelist</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">import com.alibaba.fastjson.JSONObject;
+
+String response_data = prev.getResponseDataAsString(); 
+JSONObject object = JSONObject.parseObject(response_data);
+JSONObject data = object.getJSONObject(&quot;data&quot;);
+log.info(object);</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
               <idleTime>true</idleTime>
               <connectTime>true</connectTime>
             </value>

@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="健康星球" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="V1.0" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">mp.flins.com.cn</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">token</stringProp>
+              <stringProp name="Header.value">2c981783bba64869adbf4012429d9b41</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="健康星球入口" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/customer/qa/healthyplanet</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="测试题列表-v1" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;type&quot;: &quot;thyroid&quot;,&#xd;
+	&quot;sex&quot;: 2&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/customer/qa/operlist</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="提交测试题-v2" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="测试题列表-v2" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;type&quot;: &quot;thyroidv2&quot;,&#xd;
+	&quot;sex&quot;: 2&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/customer/qa/operlist</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取id" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">id</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提交测试题-v2" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;id&quot;: ${id},&#xd;
+	&quot;qaQuestList&quot;: [{&#xd;
+			&quot;id&quot;: 50,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您的性别？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-basic001&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 1,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 1,&#xd;
+					&quot;questId&quot;: 50,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 男性&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 2,&#xd;
+					&quot;questId&quot;: 1,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 女性&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 51,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您的出生日期？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-basic002&quot;,&#xd;
+			&quot;questType&quot;: 3,&#xd;
+			&quot;inputType&quot;: 4,&#xd;
+			&quot;sortNo&quot;: 2,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 52,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您的身高＿＿＿（厘米cm）&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-basic003&quot;,&#xd;
+			&quot;questType&quot;: 3,&#xd;
+			&quot;inputType&quot;: 1,&#xd;
+			&quot;sortNo&quot;: 3,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;168&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+&#xd;
+		{&#xd;
+			&quot;id&quot;: 53,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您生活的城市？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-basic004&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 5,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;C&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 122,&#xd;
+					&quot;questId&quot;: 53,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 不相信眼泪的北、上、广、深&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 123,&#xd;
+					&quot;questId&quot;: 53,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 省会、直辖市&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 124,&#xd;
+					&quot;questId&quot;: 53,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;C 远离拥挤的三线城市&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 125,&#xd;
+					&quot;questId&quot;: 53,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;D 美丽的小乡村&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 105,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;体重＿＿＿（公斤kg）&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000205&quot;,&#xd;
+			&quot;questType&quot;: 3,&#xd;
+			&quot;inputType&quot;: 2,&#xd;
+			&quot;sortNo&quot;: 4,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;60.98&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 106,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您的文化程度？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000206&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 6,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;C&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 156,&#xd;
+					&quot;questId&quot;: 106,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 大专、本科及以上&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 157,&#xd;
+					&quot;questId&quot;: 106,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 高中或中专&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 158,&#xd;
+					&quot;questId&quot;: 106,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;C 初中及以下&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 107,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您以前有得过甲状腺疾病吗？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000207&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 7,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 159,&#xd;
+					&quot;questId&quot;: 107,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 有得过甲状腺结节&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 160,&#xd;
+					&quot;questId&quot;: 107,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 有得过甲状腺炎、甲亢、甲减、甲状腺腺瘤等至少其中一种&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 161,&#xd;
+					&quot;questId&quot;: 107,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;C 没有或者不知道&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 108,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您的亲属中有没有患甲状腺癌的？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000208&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 8,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;A,B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 162,&#xd;
+					&quot;questId&quot;: 108,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 父母、子女、兄弟姐妹&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 163,&#xd;
+					&quot;questId&quot;: 108,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 叔、伯、姑、舅、姨、祖父母、外祖父母&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 164,&#xd;
+					&quot;questId&quot;: 108,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;C 没有或者不知道&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 109,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您是否经常（每周≥3次）吃以下食物？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000209&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 9,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;A,B,C&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 165,&#xd;
+					&quot;questId&quot;: 109,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 海产类食物如：海鱼、海虾、海贝、海带、紫菜等&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 166,&#xd;
+					&quot;questId&quot;: 109,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 泡菜、咸蛋、腊肉以及其他腌制品&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 167,&#xd;
+					&quot;questId&quot;: 109,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;C 以上都没有&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 110,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您是否有糖尿病或者血糖异常？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000210&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 10,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;C&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 168,&#xd;
+					&quot;questId&quot;: 110,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 有&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 169,&#xd;
+					&quot;questId&quot;: 110,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 没有或者不知道&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 111,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您是否有血脂高（甘油三脂、胆固醇）？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000211&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 11,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 170,&#xd;
+					&quot;questId&quot;: 111,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 有&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 171,&#xd;
+					&quot;questId&quot;: 111,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 没有或者不知道&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 112,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您曾经有没有接受过头颈部CT检查？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000212&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 12,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 172,&#xd;
+					&quot;questId&quot;: 112,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 有，18岁之前接受过&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 173,&#xd;
+					&quot;questId&quot;: 112,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 有，18岁之后接受过&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 174,&#xd;
+					&quot;questId&quot;: 112,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;C 没有或者不知道&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 113,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您是否常常有下列情绪？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000213&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 13,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;E&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 175,&#xd;
+					&quot;questId&quot;: 113,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 容易烦恼和激动&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 176,&#xd;
+					&quot;questId&quot;: 113,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 爱生闷气&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 177,&#xd;
+					&quot;questId&quot;: 113,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;C 遇事不愿与人倾诉&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 178,&#xd;
+					&quot;questId&quot;: 113,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;D 处事态度悲观&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 179,&#xd;
+					&quot;questId&quot;: 113,&#xd;
+					&quot;key&quot;: &quot;E&quot;,&#xd;
+					&quot;desc&quot;: &quot;E 我是乐天派，啥都是浮云&quot;,&#xd;
+					&quot;sortNo&quot;: 5,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 114,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000214&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 14,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 180,&#xd;
+					&quot;questId&quot;: 114,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 有，经常觉得压力山大&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 181,&#xd;
+					&quot;questId&quot;: 114,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 部分时间有&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 182,&#xd;
+					&quot;questId&quot;: 114,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;C 偶尔有或没有&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 115,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您与他人的相处的时候，通常是什么样的状态？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000215&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 15,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 183,&#xd;
+					&quot;questId&quot;: 115,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 喜欢与人交往，相处融洽&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 184,&#xd;
+					&quot;questId&quot;: 115,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 我喜欢特立独行，时不时地会与某些人有口角&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 116,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您是否曾经怀孕次数达3次以上？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000216&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 16,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 185,&#xd;
+					&quot;questId&quot;: 116,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 是（＞3次）&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 186,&#xd;
+					&quot;questId&quot;: 116,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 否（≤3次）&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 117,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您的初潮年龄是多少岁？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000217&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 17,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 187,&#xd;
+					&quot;questId&quot;: 117,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A ＜14岁&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 188,&#xd;
+					&quot;questId&quot;: 117,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B ≥14岁&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 118,&#xd;
+			&quot;qpId&quot;: 4,&#xd;
+			&quot;question&quot;: &quot;您是否患有乳腺增生？&quot;,&#xd;
+			&quot;subHead&quot;: null,&#xd;
+			&quot;code&quot;: &quot;QL-000218&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 18,&#xd;
+			&quot;createTime&quot;: 1540456151000,&#xd;
+			&quot;epId&quot;: 4,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 189,&#xd;
+					&quot;questId&quot;: 118,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;A 是&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 190,&#xd;
+					&quot;questId&quot;: 118,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;B 否&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1540456216000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2018-10-25 16:30:16&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2018-10-25 16:29:11&quot;&#xd;
+		}&#xd;
+	]&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/customer/qa/opersavev2</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

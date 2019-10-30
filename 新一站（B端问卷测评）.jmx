@@ -1,0 +1,3792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="新一站（B端问卷测评）" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath">E:\miaomiao\apache-jmeter-4.0\myjar\zb_sign.jar,E:\miaomiao\apache-jmeter-4.0\lib\ext\fastjson-1.2.58.jar</stringProp>
+    </TestPlan>
+    <hashTree>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="测试环境" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">mp.flins.com.cn</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">/business/api/dispatch</stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷题目" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;czvlVxrYmroNb6efCqiVMuPpj9bSebaq&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;operlist&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;type&quot;: &quot;thyroid&quot;,&#xd;
+		&quot;sex&quot;: 2&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign1}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="题目签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String ope_data = &quot;{\r\n&quot; + 
+				&quot;		\&quot;type\&quot;: \&quot;thyroid\&quot;,\r\n&quot; + 
+				&quot;		\&quot;sex\&quot;: 2\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJKlg03vo0rU2/yNtxJilQzI8nrNA+DUN3uqAW4QKAXFZMMpbLI+TYpeKtmHhOe7I+NJB9UMxDUj3Mf3ukpDiEcCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEAkqWDTe+jStTb/I23EmKVDMjyes0D4NQ3e6oBbhAoBcVkwylssj5Nil4q2YeE57sj40kH1QzENSPcx/e6SkOIRwIDAQABAkAl7OIxZLlRYA1ommnvOkmb3dhABAdtvNSAie4Gvezr2MJQfS02pR0eJyoeK5qZ95yFVe7cQdCHR3ctq6nq4hnxAiEA+9Z4C6T2joJT0GI9EWU6EDTfuXHfIQQKs4XGZI+Tf28CIQCVEfpC1MktWRXAvwJsS+ZIRlJnxkvoziqRvzZHuC4YqQIhAMwanwJ4+Sa4s6sQ44OEshFOeP/4LSm5995VjlwUDSvbAiEAiPb+oR8PRMpAUVtu54AJMsjh+BVbM6kRtd4hCl5whBkCIQCyqD+pM/caore6N73YtRHF8P4d9MW5U1QLO9juTAy2Dw==&quot;;
+
+
+String sign1 = MD5WithRSAUtil1.type_1(privateKey,pubKey,ope_data);
+vars.put(&quot;sign1&quot;,sign1);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷提交-女性" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;czvlVxrYmroNb6efCqiVMuPpj9bSebaq&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;opersave&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;qaQuestList&quot;: [{&#xd;
+				&quot;code&quot;: &quot;QL-100001&quot;,&#xd;
+				&quot;question&quot;: &quot;您的性别？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10001&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100002&quot;,&#xd;
+				&quot;question&quot;: &quot;您的年龄？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 2,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10002&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100003&quot;,&#xd;
+				&quot;question&quot;: &quot;您的身高＿＿＿（厘米cm）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 3,&#xd;
+				&quot;answer&quot;: &quot;168&quot;,&#xd;
+				&quot;inputType&quot;: 1,&#xd;
+				&quot;id&quot;: 10003&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100004&quot;,&#xd;
+				&quot;question&quot;: &quot;体重＿＿＿（公斤kg）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 4,&#xd;
+				&quot;answer&quot;: &quot;60.98&quot;,&#xd;
+				&quot;inputType&quot;: 2,&#xd;
+				&quot;id&quot;: 10004&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100005&quot;,&#xd;
+				&quot;question&quot;: &quot;您生活的城市？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 5,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10005&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100006&quot;,&#xd;
+				&quot;question&quot;: &quot;您的文化程度？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 6,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10006&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100007&quot;,&#xd;
+				&quot;question&quot;: &quot;您以前有得过甲状腺疾病吗？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 7,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10007&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100008&quot;,&#xd;
+				&quot;question&quot;: &quot;您的亲属中有没有患甲状腺癌的？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 8,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10008&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100009&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否经常（每周≥3次）吃以下食物？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 9,&#xd;
+				&quot;answer&quot;: &quot;A,B,C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10009&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100010&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有糖尿病或者血糖异常？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 10,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10010&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100011&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有血脂高（甘油三脂、胆固醇）？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 11,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10011&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100012&quot;,&#xd;
+				&quot;question&quot;: &quot;您曾经有没有接受过头颈部CT检查？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 12,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10012&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100013&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否常常有下列情绪？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 13,&#xd;
+				&quot;answer&quot;: &quot;E&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10013&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100014&quot;,&#xd;
+				&quot;question&quot;: &quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 14,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10014&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100015&quot;,&#xd;
+				&quot;question&quot;: &quot;您与他人的相处的时候，通常是什么样的状态？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 15,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10015&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100016&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否曾经怀孕次数达3次以上？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 16,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10016&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100017&quot;,&#xd;
+				&quot;question&quot;: &quot;您的初潮年龄是多少岁？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 17,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10017&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100018&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否患有乳腺增生？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 18,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10018&#xd;
+			}&#xd;
+		]&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign2}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="提交获取签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String save_data = &quot;{\r\n&quot; + 
+				&quot;		\&quot;qaQuestList\&quot;: [{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100001\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的性别？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10001\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100002\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的年龄？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10002\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100003\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的身高＿＿＿（厘米cm）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;168\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10003\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100004\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;体重＿＿＿（公斤kg）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 4,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;60.98\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10004\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100005\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您生活的城市？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 5,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10005\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100006\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的文化程度？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 6,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10006\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100007\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您以前有得过甲状腺疾病吗？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 7,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10007\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100008\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的亲属中有没有患甲状腺癌的？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 8,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10008\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100009\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否经常（每周≥3次）吃以下食物？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 9,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A,B,C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10009\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100010\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有糖尿病或者血糖异常？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 10,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10010\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100011\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有血脂高（甘油三脂、胆固醇）？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 11,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10011\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100012\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您曾经有没有接受过头颈部CT检查？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 12,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10012\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100013\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否常常有下列情绪？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 13,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;E\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10013\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100014\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 14,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10014\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100015\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您与他人的相处的时候，通常是什么样的状态？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 15,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10015\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100016\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否曾经怀孕次数达3次以上？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 16,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10016\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100017\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的初潮年龄是多少岁？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 17,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10017\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100018\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否患有乳腺增生？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 18,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10018\r\n&quot; + 
+				&quot;			}\r\n&quot; + 
+				&quot;		]\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJKlg03vo0rU2/yNtxJilQzI8nrNA+DUN3uqAW4QKAXFZMMpbLI+TYpeKtmHhOe7I+NJB9UMxDUj3Mf3ukpDiEcCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEAkqWDTe+jStTb/I23EmKVDMjyes0D4NQ3e6oBbhAoBcVkwylssj5Nil4q2YeE57sj40kH1QzENSPcx/e6SkOIRwIDAQABAkAl7OIxZLlRYA1ommnvOkmb3dhABAdtvNSAie4Gvezr2MJQfS02pR0eJyoeK5qZ95yFVe7cQdCHR3ctq6nq4hnxAiEA+9Z4C6T2joJT0GI9EWU6EDTfuXHfIQQKs4XGZI+Tf28CIQCVEfpC1MktWRXAvwJsS+ZIRlJnxkvoziqRvzZHuC4YqQIhAMwanwJ4+Sa4s6sQ44OEshFOeP/4LSm5995VjlwUDSvbAiEAiPb+oR8PRMpAUVtu54AJMsjh+BVbM6kRtd4hCl5whBkCIQCyqD+pM/caore6N73YtRHF8P4d9MW5U1QLO9juTAy2Dw==&quot;;
+
+
+String sign2 = MD5WithRSAUtil1.type_1(privateKey,pubKey,save_data);
+vars.put(&quot;sign2&quot;,sign2);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷提交-男性" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;czvlVxrYmroNb6efCqiVMuPpj9bSebaq&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;opersave&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;qaQuestList&quot;: [{&#xd;
+				&quot;code&quot;: &quot;QL-100001&quot;,&#xd;
+				&quot;question&quot;: &quot;您的性别？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10001&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100002&quot;,&#xd;
+				&quot;question&quot;: &quot;您的年龄？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 2,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10002&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100003&quot;,&#xd;
+				&quot;question&quot;: &quot;您的身高＿＿＿（厘米cm）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 3,&#xd;
+				&quot;answer&quot;: &quot;180&quot;,&#xd;
+				&quot;inputType&quot;: 1,&#xd;
+				&quot;id&quot;: 10003&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100004&quot;,&#xd;
+				&quot;question&quot;: &quot;体重＿＿＿（公斤kg）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 4,&#xd;
+				&quot;answer&quot;: &quot;60.98&quot;,&#xd;
+				&quot;inputType&quot;: 2,&#xd;
+				&quot;id&quot;: 10004&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100005&quot;,&#xd;
+				&quot;question&quot;: &quot;您生活的城市？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 5,&#xd;
+				&quot;answer&quot;: &quot;D&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10005&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100006&quot;,&#xd;
+				&quot;question&quot;: &quot;您的文化程度？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 6,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10006&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100007&quot;,&#xd;
+				&quot;question&quot;: &quot;您以前有得过甲状腺疾病吗？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 7,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10007&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100008&quot;,&#xd;
+				&quot;question&quot;: &quot;您的亲属中有没有患甲状腺癌的？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 8,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10008&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100009&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否经常（每周≥3次）吃以下食物？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 9,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10009&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100010&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有糖尿病或者血糖异常？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 10,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10010&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100011&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有血脂高（甘油三脂、胆固醇）？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 11,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10011&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100012&quot;,&#xd;
+				&quot;question&quot;: &quot;您曾经有没有接受过头颈部CT检查？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 12,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10012&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100013&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否常常有下列情绪？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 13,&#xd;
+				&quot;answer&quot;: &quot;E&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10013&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100014&quot;,&#xd;
+				&quot;question&quot;: &quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 14,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10014&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100015&quot;,&#xd;
+				&quot;question&quot;: &quot;您与他人的相处的时候，通常是什么样的状态？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 15,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10015&#xd;
+			}&#xd;
+		]&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign3}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="提交获取签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String save_data2 = &quot;{\r\n&quot; + 
+				&quot;		\&quot;qaQuestList\&quot;: [{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100001\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的性别？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10001\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100002\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的年龄？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10002\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100003\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的身高＿＿＿（厘米cm）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;180\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10003\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100004\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;体重＿＿＿（公斤kg）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 4,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;60.98\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10004\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100005\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您生活的城市？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 5,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;D\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10005\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100006\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的文化程度？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 6,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10006\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100007\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您以前有得过甲状腺疾病吗？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 7,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10007\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100008\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的亲属中有没有患甲状腺癌的？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 8,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10008\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100009\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否经常（每周≥3次）吃以下食物？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 9,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10009\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100010\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有糖尿病或者血糖异常？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 10,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10010\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100011\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有血脂高（甘油三脂、胆固醇）？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 11,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10011\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100012\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您曾经有没有接受过头颈部CT检查？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 12,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10012\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100013\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否常常有下列情绪？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 13,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;E\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10013\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100014\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 14,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10014\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100015\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您与他人的相处的时候，通常是什么样的状态？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 15,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10015\r\n&quot; + 
+				&quot;			}\r\n&quot; + 
+				&quot;		]\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJKlg03vo0rU2/yNtxJilQzI8nrNA+DUN3uqAW4QKAXFZMMpbLI+TYpeKtmHhOe7I+NJB9UMxDUj3Mf3ukpDiEcCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEAkqWDTe+jStTb/I23EmKVDMjyes0D4NQ3e6oBbhAoBcVkwylssj5Nil4q2YeE57sj40kH1QzENSPcx/e6SkOIRwIDAQABAkAl7OIxZLlRYA1ommnvOkmb3dhABAdtvNSAie4Gvezr2MJQfS02pR0eJyoeK5qZ95yFVe7cQdCHR3ctq6nq4hnxAiEA+9Z4C6T2joJT0GI9EWU6EDTfuXHfIQQKs4XGZI+Tf28CIQCVEfpC1MktWRXAvwJsS+ZIRlJnxkvoziqRvzZHuC4YqQIhAMwanwJ4+Sa4s6sQ44OEshFOeP/4LSm5995VjlwUDSvbAiEAiPb+oR8PRMpAUVtu54AJMsjh+BVbM6kRtd4hCl5whBkCIQCyqD+pM/caore6N73YtRHF8P4d9MW5U1QLO9juTAy2Dw==&quot;;
+
+
+String sign3 = MD5WithRSAUtil1.type_1(privateKey,pubKey,save_data2);
+vars.put(&quot;sign3&quot;,sign3);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="预发环境" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">api.flins.com.cn</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">/business/api/dispatch</stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷题目" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;czvlVxrYmroNb6efCqiVMuPpj9bSebaq&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;operlist&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;type&quot;: &quot;thyroid&quot;,&#xd;
+		&quot;sex&quot;: 2&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign1}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="题目签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String ope_data = &quot;{\r\n&quot; + 
+				&quot;		\&quot;type\&quot;: \&quot;thyroid\&quot;,\r\n&quot; + 
+				&quot;		\&quot;sex\&quot;: 2\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJKlg03vo0rU2/yNtxJilQzI8nrNA+DUN3uqAW4QKAXFZMMpbLI+TYpeKtmHhOe7I+NJB9UMxDUj3Mf3ukpDiEcCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEAkqWDTe+jStTb/I23EmKVDMjyes0D4NQ3e6oBbhAoBcVkwylssj5Nil4q2YeE57sj40kH1QzENSPcx/e6SkOIRwIDAQABAkAl7OIxZLlRYA1ommnvOkmb3dhABAdtvNSAie4Gvezr2MJQfS02pR0eJyoeK5qZ95yFVe7cQdCHR3ctq6nq4hnxAiEA+9Z4C6T2joJT0GI9EWU6EDTfuXHfIQQKs4XGZI+Tf28CIQCVEfpC1MktWRXAvwJsS+ZIRlJnxkvoziqRvzZHuC4YqQIhAMwanwJ4+Sa4s6sQ44OEshFOeP/4LSm5995VjlwUDSvbAiEAiPb+oR8PRMpAUVtu54AJMsjh+BVbM6kRtd4hCl5whBkCIQCyqD+pM/caore6N73YtRHF8P4d9MW5U1QLO9juTAy2Dw==&quot;;
+
+
+String sign1 = MD5WithRSAUtil1.type_1(privateKey,pubKey,ope_data);
+vars.put(&quot;sign1&quot;,sign1);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷提交-女性" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;czvlVxrYmroNb6efCqiVMuPpj9bSebaq&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;opersave&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;qaQuestList&quot;: [{&#xd;
+				&quot;code&quot;: &quot;QL-100001&quot;,&#xd;
+				&quot;question&quot;: &quot;您的性别？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10001&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100002&quot;,&#xd;
+				&quot;question&quot;: &quot;您的年龄？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 2,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10002&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100003&quot;,&#xd;
+				&quot;question&quot;: &quot;您的身高＿＿＿（厘米cm）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 3,&#xd;
+				&quot;answer&quot;: &quot;168&quot;,&#xd;
+				&quot;inputType&quot;: 1,&#xd;
+				&quot;id&quot;: 10003&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100004&quot;,&#xd;
+				&quot;question&quot;: &quot;体重＿＿＿（公斤kg）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 4,&#xd;
+				&quot;answer&quot;: &quot;60.98&quot;,&#xd;
+				&quot;inputType&quot;: 2,&#xd;
+				&quot;id&quot;: 10004&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100005&quot;,&#xd;
+				&quot;question&quot;: &quot;您生活的城市？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 5,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10005&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100006&quot;,&#xd;
+				&quot;question&quot;: &quot;您的文化程度？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 6,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10006&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100007&quot;,&#xd;
+				&quot;question&quot;: &quot;您以前有得过甲状腺疾病吗？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 7,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10007&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100008&quot;,&#xd;
+				&quot;question&quot;: &quot;您的亲属中有没有患甲状腺癌的？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 8,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10008&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100009&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否经常（每周≥3次）吃以下食物？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 9,&#xd;
+				&quot;answer&quot;: &quot;A,B,C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10009&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100010&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有糖尿病或者血糖异常？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 10,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10010&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100011&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有血脂高（甘油三脂、胆固醇）？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 11,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10011&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100012&quot;,&#xd;
+				&quot;question&quot;: &quot;您曾经有没有接受过头颈部CT检查？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 12,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10012&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100013&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否常常有下列情绪？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 13,&#xd;
+				&quot;answer&quot;: &quot;E&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10013&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100014&quot;,&#xd;
+				&quot;question&quot;: &quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 14,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10014&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100015&quot;,&#xd;
+				&quot;question&quot;: &quot;您与他人的相处的时候，通常是什么样的状态？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 15,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10015&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100016&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否曾经怀孕次数达3次以上？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 16,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10016&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100017&quot;,&#xd;
+				&quot;question&quot;: &quot;您的初潮年龄是多少岁？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 17,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10017&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100018&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否患有乳腺增生？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 18,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10018&#xd;
+			}&#xd;
+		]&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign2}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="提交获取签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String save_data = &quot;{\r\n&quot; + 
+				&quot;		\&quot;qaQuestList\&quot;: [{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100001\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的性别？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10001\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100002\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的年龄？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10002\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100003\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的身高＿＿＿（厘米cm）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;168\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10003\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100004\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;体重＿＿＿（公斤kg）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 4,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;60.98\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10004\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100005\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您生活的城市？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 5,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10005\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100006\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的文化程度？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 6,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10006\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100007\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您以前有得过甲状腺疾病吗？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 7,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10007\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100008\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的亲属中有没有患甲状腺癌的？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 8,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10008\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100009\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否经常（每周≥3次）吃以下食物？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 9,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A,B,C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10009\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100010\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有糖尿病或者血糖异常？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 10,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10010\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100011\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有血脂高（甘油三脂、胆固醇）？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 11,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10011\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100012\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您曾经有没有接受过头颈部CT检查？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 12,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10012\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100013\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否常常有下列情绪？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 13,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;E\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10013\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100014\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 14,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10014\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100015\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您与他人的相处的时候，通常是什么样的状态？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 15,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10015\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100016\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否曾经怀孕次数达3次以上？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 16,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10016\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100017\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的初潮年龄是多少岁？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 17,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10017\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100018\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否患有乳腺增生？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 18,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10018\r\n&quot; + 
+				&quot;			}\r\n&quot; + 
+				&quot;		]\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJKlg03vo0rU2/yNtxJilQzI8nrNA+DUN3uqAW4QKAXFZMMpbLI+TYpeKtmHhOe7I+NJB9UMxDUj3Mf3ukpDiEcCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEAkqWDTe+jStTb/I23EmKVDMjyes0D4NQ3e6oBbhAoBcVkwylssj5Nil4q2YeE57sj40kH1QzENSPcx/e6SkOIRwIDAQABAkAl7OIxZLlRYA1ommnvOkmb3dhABAdtvNSAie4Gvezr2MJQfS02pR0eJyoeK5qZ95yFVe7cQdCHR3ctq6nq4hnxAiEA+9Z4C6T2joJT0GI9EWU6EDTfuXHfIQQKs4XGZI+Tf28CIQCVEfpC1MktWRXAvwJsS+ZIRlJnxkvoziqRvzZHuC4YqQIhAMwanwJ4+Sa4s6sQ44OEshFOeP/4LSm5995VjlwUDSvbAiEAiPb+oR8PRMpAUVtu54AJMsjh+BVbM6kRtd4hCl5whBkCIQCyqD+pM/caore6N73YtRHF8P4d9MW5U1QLO9juTAy2Dw==&quot;;
+
+
+String sign2 = MD5WithRSAUtil1.type_1(privateKey,pubKey,save_data);
+vars.put(&quot;sign2&quot;,sign2);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷提交-男性" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;czvlVxrYmroNb6efCqiVMuPpj9bSebaq&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;opersave&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;qaQuestList&quot;: [{&#xd;
+				&quot;code&quot;: &quot;QL-100001&quot;,&#xd;
+				&quot;question&quot;: &quot;您的性别？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10001&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100002&quot;,&#xd;
+				&quot;question&quot;: &quot;您的年龄？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 2,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10002&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100003&quot;,&#xd;
+				&quot;question&quot;: &quot;您的身高＿＿＿（厘米cm）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 3,&#xd;
+				&quot;answer&quot;: &quot;189&quot;,&#xd;
+				&quot;inputType&quot;: 1,&#xd;
+				&quot;id&quot;: 10003&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100004&quot;,&#xd;
+				&quot;question&quot;: &quot;体重＿＿＿（公斤kg）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 4,&#xd;
+				&quot;answer&quot;: &quot;80&quot;,&#xd;
+				&quot;inputType&quot;: 2,&#xd;
+				&quot;id&quot;: 10004&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100005&quot;,&#xd;
+				&quot;question&quot;: &quot;您生活的城市？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 5,&#xd;
+				&quot;answer&quot;: &quot;D&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10005&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100006&quot;,&#xd;
+				&quot;question&quot;: &quot;您的文化程度？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 6,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10006&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100007&quot;,&#xd;
+				&quot;question&quot;: &quot;您以前有得过甲状腺疾病吗？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 7,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10007&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100008&quot;,&#xd;
+				&quot;question&quot;: &quot;您的亲属中有没有患甲状腺癌的？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 8,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10008&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100009&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否经常（每周≥3次）吃以下食物？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 9,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10009&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100010&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有糖尿病或者血糖异常？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 10,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10010&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100011&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有血脂高（甘油三脂、胆固醇）？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 11,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10011&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100012&quot;,&#xd;
+				&quot;question&quot;: &quot;您曾经有没有接受过头颈部CT检查？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 12,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10012&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100013&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否常常有下列情绪？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 13,&#xd;
+				&quot;answer&quot;: &quot;E&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10013&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100014&quot;,&#xd;
+				&quot;question&quot;: &quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 14,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10014&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100015&quot;,&#xd;
+				&quot;question&quot;: &quot;您与他人的相处的时候，通常是什么样的状态？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 15,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10015&#xd;
+			}&#xd;
+		]&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign3}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="提交获取签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String save_data2 = &quot;{\r\n&quot; + 
+				&quot;		\&quot;qaQuestList\&quot;: [{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100001\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的性别？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10001\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100002\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的年龄？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10002\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100003\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的身高＿＿＿（厘米cm）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;189\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10003\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100004\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;体重＿＿＿（公斤kg）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 4,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;80\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10004\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100005\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您生活的城市？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 5,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;D\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10005\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100006\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的文化程度？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 6,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10006\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100007\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您以前有得过甲状腺疾病吗？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 7,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10007\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100008\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的亲属中有没有患甲状腺癌的？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 8,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10008\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100009\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否经常（每周≥3次）吃以下食物？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 9,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10009\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100010\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有糖尿病或者血糖异常？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 10,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10010\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100011\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有血脂高（甘油三脂、胆固醇）？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 11,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10011\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100012\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您曾经有没有接受过头颈部CT检查？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 12,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10012\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100013\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否常常有下列情绪？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 13,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;E\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10013\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100014\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 14,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10014\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100015\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您与他人的相处的时候，通常是什么样的状态？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 15,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10015\r\n&quot; + 
+				&quot;			}\r\n&quot; + 
+				&quot;		]\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJKlg03vo0rU2/yNtxJilQzI8nrNA+DUN3uqAW4QKAXFZMMpbLI+TYpeKtmHhOe7I+NJB9UMxDUj3Mf3ukpDiEcCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEAkqWDTe+jStTb/I23EmKVDMjyes0D4NQ3e6oBbhAoBcVkwylssj5Nil4q2YeE57sj40kH1QzENSPcx/e6SkOIRwIDAQABAkAl7OIxZLlRYA1ommnvOkmb3dhABAdtvNSAie4Gvezr2MJQfS02pR0eJyoeK5qZ95yFVe7cQdCHR3ctq6nq4hnxAiEA+9Z4C6T2joJT0GI9EWU6EDTfuXHfIQQKs4XGZI+Tf28CIQCVEfpC1MktWRXAvwJsS+ZIRlJnxkvoziqRvzZHuC4YqQIhAMwanwJ4+Sa4s6sQ44OEshFOeP/4LSm5995VjlwUDSvbAiEAiPb+oR8PRMpAUVtu54AJMsjh+BVbM6kRtd4hCl5whBkCIQCyqD+pM/caore6N73YtRHF8P4d9MW5U1QLO9juTAy2Dw==&quot;;
+
+
+String sign3 = MD5WithRSAUtil1.type_1(privateKey,pubKey,save_data2);
+vars.put(&quot;sign3&quot;,sign3);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷提交-女性(缺少题目)" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;czvlVxrYmroNb6efCqiVMuPpj9bSebaq&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;opersave&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;qaQuestList&quot;: [{&#xd;
+				&quot;code&quot;: &quot;QL-100001&quot;,&#xd;
+				&quot;question&quot;: &quot;您的性别？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10001&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100003&quot;,&#xd;
+				&quot;question&quot;: &quot;您的身高＿＿＿（厘米cm）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 3,&#xd;
+				&quot;answer&quot;: &quot;168&quot;,&#xd;
+				&quot;inputType&quot;: 1,&#xd;
+				&quot;id&quot;: 10003&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100004&quot;,&#xd;
+				&quot;question&quot;: &quot;体重＿＿＿（公斤kg）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 4,&#xd;
+				&quot;answer&quot;: &quot;60.98&quot;,&#xd;
+				&quot;inputType&quot;: 2,&#xd;
+				&quot;id&quot;: 10004&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100005&quot;,&#xd;
+				&quot;question&quot;: &quot;您生活的城市？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 5,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10005&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100006&quot;,&#xd;
+				&quot;question&quot;: &quot;您的文化程度？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 6,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10006&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100007&quot;,&#xd;
+				&quot;question&quot;: &quot;您以前有得过甲状腺疾病吗？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 7,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10007&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100008&quot;,&#xd;
+				&quot;question&quot;: &quot;您的亲属中有没有患甲状腺癌的？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 8,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10008&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100009&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否经常（每周≥3次）吃以下食物？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 9,&#xd;
+				&quot;answer&quot;: &quot;A,B,C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10009&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100010&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有糖尿病或者血糖异常？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 10,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10010&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100011&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有血脂高（甘油三脂、胆固醇）？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 11,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10011&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100012&quot;,&#xd;
+				&quot;question&quot;: &quot;您曾经有没有接受过头颈部CT检查？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 12,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10012&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100013&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否常常有下列情绪？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 13,&#xd;
+				&quot;answer&quot;: &quot;E&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10013&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100014&quot;,&#xd;
+				&quot;question&quot;: &quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 14,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10014&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100015&quot;,&#xd;
+				&quot;question&quot;: &quot;您与他人的相处的时候，通常是什么样的状态？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 15,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10015&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100016&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否曾经怀孕次数达3次以上？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 16,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10016&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100018&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否患有乳腺增生？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 18,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10018&#xd;
+			}&#xd;
+		]&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign2}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="提交获取签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String save_data = &quot; {\r\n&quot; + 
+				&quot;		\&quot;qaQuestList\&quot;: [{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100001\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的性别？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10001\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100003\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的身高＿＿＿（厘米cm）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;168\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10003\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100004\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;体重＿＿＿（公斤kg）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 4,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;60.98\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10004\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100005\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您生活的城市？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 5,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10005\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100006\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的文化程度？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 6,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10006\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100007\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您以前有得过甲状腺疾病吗？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 7,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10007\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100008\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的亲属中有没有患甲状腺癌的？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 8,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10008\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100009\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否经常（每周≥3次）吃以下食物？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 9,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A,B,C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10009\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100010\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有糖尿病或者血糖异常？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 10,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10010\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100011\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有血脂高（甘油三脂、胆固醇）？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 11,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10011\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100012\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您曾经有没有接受过头颈部CT检查？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 12,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10012\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100013\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否常常有下列情绪？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 13,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;E\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10013\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100014\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 14,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10014\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100015\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您与他人的相处的时候，通常是什么样的状态？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 15,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10015\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100016\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否曾经怀孕次数达3次以上？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 16,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10016\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100018\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否患有乳腺增生？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 18,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10018\r\n&quot; + 
+				&quot;			}\r\n&quot; + 
+				&quot;		]\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJKlg03vo0rU2/yNtxJilQzI8nrNA+DUN3uqAW4QKAXFZMMpbLI+TYpeKtmHhOe7I+NJB9UMxDUj3Mf3ukpDiEcCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEAkqWDTe+jStTb/I23EmKVDMjyes0D4NQ3e6oBbhAoBcVkwylssj5Nil4q2YeE57sj40kH1QzENSPcx/e6SkOIRwIDAQABAkAl7OIxZLlRYA1ommnvOkmb3dhABAdtvNSAie4Gvezr2MJQfS02pR0eJyoeK5qZ95yFVe7cQdCHR3ctq6nq4hnxAiEA+9Z4C6T2joJT0GI9EWU6EDTfuXHfIQQKs4XGZI+Tf28CIQCVEfpC1MktWRXAvwJsS+ZIRlJnxkvoziqRvzZHuC4YqQIhAMwanwJ4+Sa4s6sQ44OEshFOeP/4LSm5995VjlwUDSvbAiEAiPb+oR8PRMpAUVtu54AJMsjh+BVbM6kRtd4hCl5whBkCIQCyqD+pM/caore6N73YtRHF8P4d9MW5U1QLO9juTAy2Dw==&quot;;
+
+
+String sign2 = MD5WithRSAUtil1.type_1(privateKey,pubKey,save_data);
+vars.put(&quot;sign2&quot;,sign2);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="生产环境" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">bus.flins.com.cn</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">/business/api/dispatch</stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷题目" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;Tn41OHTGRtZfBJQOlaqdxyekRZya7bEfC&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;operlist&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;type&quot;: &quot;thyroid&quot;,&#xd;
+		&quot;sex&quot;: 2&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign1}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="题目签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String ope_data = &quot;{\r\n&quot; + 
+				&quot;		\&quot;type\&quot;: \&quot;thyroid\&quot;,\r\n&quot; + 
+				&quot;		\&quot;sex\&quot;: 2\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJB//UiVCcAPFS1V8ButO70n4KJsY2NJsEAvNbZBU+Sk+3loS6cxtBwcCE0s5X+1wiZ4PV6RL8UGMqioFozWjPUCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAkH/9SJUJwA8VLVXwG607vSfgomxjY0mwQC81tkFT5KT7eWhLpzG0HBwITSzlf7XCJng9XpEvxQYyqKgWjNaM9QIDAQABAkAxixCGgEMVjJZQMvTeKGkhE7kbN1pkQnGhsA4UbRWcgMTDt8ME60YLIamg+vxfWdcv2tAB4NRztB/BXDSv4GpBAiEA9TWqD3EXO9Pi90CX4l/ZeeG2XJIGD1In41hvTyKeVY0CIQCW2895y0G96UzQN0DNgVvsSQSwJKWrKdU5cdqx/sV3CQIhAKDaTi+JATO24ClPzxKpy7C/VvBMvfro6s+hIItp6zG1AiAi+GFoAk4DEAnWWniTKuF8LJEBo/0jaFcdMd9YU47CwQIhAOSLS4oPCHJTfb7BdNR0zeRnnOklfIS20lvzAN8NH8kX&quot;;
+
+
+String sign1 = MD5WithRSAUtil1.type_1(privateKey,pubKey,ope_data);
+vars.put(&quot;sign1&quot;,sign1);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷提交-女性" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;Tn41OHTGRtZfBJQOlaqdxyekRZya7bEfC&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;opersave&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;qaQuestList&quot;: [{&#xd;
+				&quot;code&quot;: &quot;QL-100001&quot;,&#xd;
+				&quot;question&quot;: &quot;您的性别？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10001&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100002&quot;,&#xd;
+				&quot;question&quot;: &quot;您的年龄？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 2,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10002&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100003&quot;,&#xd;
+				&quot;question&quot;: &quot;您的身高＿＿＿（厘米cm）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 3,&#xd;
+				&quot;answer&quot;: &quot;168&quot;,&#xd;
+				&quot;inputType&quot;: 1,&#xd;
+				&quot;id&quot;: 10003&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100004&quot;,&#xd;
+				&quot;question&quot;: &quot;体重＿＿＿（公斤kg）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 4,&#xd;
+				&quot;answer&quot;: &quot;60.98&quot;,&#xd;
+				&quot;inputType&quot;: 2,&#xd;
+				&quot;id&quot;: 10004&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100005&quot;,&#xd;
+				&quot;question&quot;: &quot;您生活的城市？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 5,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10005&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100006&quot;,&#xd;
+				&quot;question&quot;: &quot;您的文化程度？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 6,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10006&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100007&quot;,&#xd;
+				&quot;question&quot;: &quot;您以前有得过甲状腺疾病吗？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 7,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10007&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100008&quot;,&#xd;
+				&quot;question&quot;: &quot;您的亲属中有没有患甲状腺癌的？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 8,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10008&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100009&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否经常（每周≥3次）吃以下食物？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 9,&#xd;
+				&quot;answer&quot;: &quot;A,B,C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10009&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100010&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有糖尿病或者血糖异常？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 10,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10010&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100011&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有血脂高（甘油三脂、胆固醇）？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 11,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10011&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100012&quot;,&#xd;
+				&quot;question&quot;: &quot;您曾经有没有接受过头颈部CT检查？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 12,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10012&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100013&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否常常有下列情绪？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 13,&#xd;
+				&quot;answer&quot;: &quot;E&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10013&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100014&quot;,&#xd;
+				&quot;question&quot;: &quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 14,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10014&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100015&quot;,&#xd;
+				&quot;question&quot;: &quot;您与他人的相处的时候，通常是什么样的状态？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 15,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10015&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100016&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否曾经怀孕次数达3次以上？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 16,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10016&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100017&quot;,&#xd;
+				&quot;question&quot;: &quot;您的初潮年龄是多少岁？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 17,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10017&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100018&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否患有乳腺增生？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 18,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10018&#xd;
+			}&#xd;
+		]&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign2}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="提交获取签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String save_data = &quot;{\r\n&quot; + 
+				&quot;		\&quot;qaQuestList\&quot;: [{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100001\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的性别？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10001\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100002\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的年龄？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10002\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100003\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的身高＿＿＿（厘米cm）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;168\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10003\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100004\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;体重＿＿＿（公斤kg）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 4,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;60.98\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10004\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100005\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您生活的城市？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 5,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10005\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100006\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的文化程度？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 6,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10006\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100007\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您以前有得过甲状腺疾病吗？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 7,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10007\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100008\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的亲属中有没有患甲状腺癌的？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 8,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10008\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100009\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否经常（每周≥3次）吃以下食物？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 9,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A,B,C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10009\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100010\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有糖尿病或者血糖异常？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 10,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10010\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100011\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有血脂高（甘油三脂、胆固醇）？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 11,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10011\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100012\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您曾经有没有接受过头颈部CT检查？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 12,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10012\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100013\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否常常有下列情绪？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 13,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;E\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10013\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100014\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 14,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10014\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100015\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您与他人的相处的时候，通常是什么样的状态？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 15,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10015\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100016\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否曾经怀孕次数达3次以上？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 16,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10016\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100017\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的初潮年龄是多少岁？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 17,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10017\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100018\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否患有乳腺增生？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 18,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10018\r\n&quot; + 
+				&quot;			}\r\n&quot; + 
+				&quot;		]\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJB//UiVCcAPFS1V8ButO70n4KJsY2NJsEAvNbZBU+Sk+3loS6cxtBwcCE0s5X+1wiZ4PV6RL8UGMqioFozWjPUCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAkH/9SJUJwA8VLVXwG607vSfgomxjY0mwQC81tkFT5KT7eWhLpzG0HBwITSzlf7XCJng9XpEvxQYyqKgWjNaM9QIDAQABAkAxixCGgEMVjJZQMvTeKGkhE7kbN1pkQnGhsA4UbRWcgMTDt8ME60YLIamg+vxfWdcv2tAB4NRztB/BXDSv4GpBAiEA9TWqD3EXO9Pi90CX4l/ZeeG2XJIGD1In41hvTyKeVY0CIQCW2895y0G96UzQN0DNgVvsSQSwJKWrKdU5cdqx/sV3CQIhAKDaTi+JATO24ClPzxKpy7C/VvBMvfro6s+hIItp6zG1AiAi+GFoAk4DEAnWWniTKuF8LJEBo/0jaFcdMd9YU47CwQIhAOSLS4oPCHJTfb7BdNR0zeRnnOklfIS20lvzAN8NH8kX&quot;;
+
+
+String sign2 = MD5WithRSAUtil1.type_1(privateKey,pubKey,save_data);
+vars.put(&quot;sign2&quot;,sign2);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷提交-男性" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;Tn41OHTGRtZfBJQOlaqdxyekRZya7bEfC&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;opersave&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;qaQuestList&quot;: [{&#xd;
+				&quot;code&quot;: &quot;QL-100001&quot;,&#xd;
+				&quot;question&quot;: &quot;您的性别？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10001&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100002&quot;,&#xd;
+				&quot;question&quot;: &quot;您的年龄？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 2,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10002&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100003&quot;,&#xd;
+				&quot;question&quot;: &quot;您的身高＿＿＿（厘米cm）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 3,&#xd;
+				&quot;answer&quot;: &quot;189&quot;,&#xd;
+				&quot;inputType&quot;: 1,&#xd;
+				&quot;id&quot;: 10003&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100004&quot;,&#xd;
+				&quot;question&quot;: &quot;体重＿＿＿（公斤kg）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 4,&#xd;
+				&quot;answer&quot;: &quot;80&quot;,&#xd;
+				&quot;inputType&quot;: 2,&#xd;
+				&quot;id&quot;: 10004&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100005&quot;,&#xd;
+				&quot;question&quot;: &quot;您生活的城市？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 5,&#xd;
+				&quot;answer&quot;: &quot;D&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10005&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100006&quot;,&#xd;
+				&quot;question&quot;: &quot;您的文化程度？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 6,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10006&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100007&quot;,&#xd;
+				&quot;question&quot;: &quot;您以前有得过甲状腺疾病吗？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 7,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10007&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100008&quot;,&#xd;
+				&quot;question&quot;: &quot;您的亲属中有没有患甲状腺癌的？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 8,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10008&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100009&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否经常（每周≥3次）吃以下食物？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 9,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10009&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100010&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有糖尿病或者血糖异常？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 10,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10010&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100011&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有血脂高（甘油三脂、胆固醇）？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 11,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10011&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100012&quot;,&#xd;
+				&quot;question&quot;: &quot;您曾经有没有接受过头颈部CT检查？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 12,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10012&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100013&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否常常有下列情绪？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 13,&#xd;
+				&quot;answer&quot;: &quot;E&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10013&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100014&quot;,&#xd;
+				&quot;question&quot;: &quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 14,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10014&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100015&quot;,&#xd;
+				&quot;question&quot;: &quot;您与他人的相处的时候，通常是什么样的状态？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 15,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10015&#xd;
+			}&#xd;
+		]&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign3}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="提交获取签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String save_data2 = &quot;{\r\n&quot; + 
+				&quot;		\&quot;qaQuestList\&quot;: [{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100001\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的性别？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10001\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100002\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的年龄？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10002\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100003\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的身高＿＿＿（厘米cm）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;189\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10003\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100004\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;体重＿＿＿（公斤kg）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 4,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;80\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10004\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100005\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您生活的城市？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 5,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;D\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10005\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100006\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的文化程度？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 6,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10006\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100007\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您以前有得过甲状腺疾病吗？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 7,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10007\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100008\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的亲属中有没有患甲状腺癌的？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 8,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10008\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100009\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否经常（每周≥3次）吃以下食物？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 9,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10009\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100010\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有糖尿病或者血糖异常？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 10,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10010\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100011\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有血脂高（甘油三脂、胆固醇）？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 11,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10011\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100012\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您曾经有没有接受过头颈部CT检查？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 12,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10012\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100013\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否常常有下列情绪？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 13,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;E\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10013\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100014\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 14,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10014\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100015\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您与他人的相处的时候，通常是什么样的状态？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 15,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10015\r\n&quot; + 
+				&quot;			}\r\n&quot; + 
+				&quot;		]\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJB//UiVCcAPFS1V8ButO70n4KJsY2NJsEAvNbZBU+Sk+3loS6cxtBwcCE0s5X+1wiZ4PV6RL8UGMqioFozWjPUCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAkH/9SJUJwA8VLVXwG607vSfgomxjY0mwQC81tkFT5KT7eWhLpzG0HBwITSzlf7XCJng9XpEvxQYyqKgWjNaM9QIDAQABAkAxixCGgEMVjJZQMvTeKGkhE7kbN1pkQnGhsA4UbRWcgMTDt8ME60YLIamg+vxfWdcv2tAB4NRztB/BXDSv4GpBAiEA9TWqD3EXO9Pi90CX4l/ZeeG2XJIGD1In41hvTyKeVY0CIQCW2895y0G96UzQN0DNgVvsSQSwJKWrKdU5cdqx/sV3CQIhAKDaTi+JATO24ClPzxKpy7C/VvBMvfro6s+hIItp6zG1AiAi+GFoAk4DEAnWWniTKuF8LJEBo/0jaFcdMd9YU47CwQIhAOSLS4oPCHJTfb7BdNR0zeRnnOklfIS20lvzAN8NH8kX&quot;;
+
+
+String sign3 = MD5WithRSAUtil1.type_1(privateKey,pubKey,save_data2);
+vars.put(&quot;sign3&quot;,sign3);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="问卷提交-女性(缺少题目)" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;appId&quot;: &quot;Tn41OHTGRtZfBJQOlaqdxyekRZya7bEfC&quot;,&#xd;
+	&quot;appKey&quot;: &quot;key1&quot;,&#xd;
+	&quot;apiCode&quot;: &quot;opersave&quot;,&#xd;
+	&quot;version&quot;: &quot;1.0&quot;,&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;qaQuestList&quot;: [{&#xd;
+				&quot;code&quot;: &quot;QL-100001&quot;,&#xd;
+				&quot;question&quot;: &quot;您的性别？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10001&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100003&quot;,&#xd;
+				&quot;question&quot;: &quot;您的身高＿＿＿（厘米cm）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 3,&#xd;
+				&quot;answer&quot;: &quot;168&quot;,&#xd;
+				&quot;inputType&quot;: 1,&#xd;
+				&quot;id&quot;: 10003&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100004&quot;,&#xd;
+				&quot;question&quot;: &quot;体重＿＿＿（公斤kg）&quot;,&#xd;
+				&quot;questType&quot;: 3,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 4,&#xd;
+				&quot;answer&quot;: &quot;60.98&quot;,&#xd;
+				&quot;inputType&quot;: 2,&#xd;
+				&quot;id&quot;: 10004&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100005&quot;,&#xd;
+				&quot;question&quot;: &quot;您生活的城市？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 5,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10005&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100006&quot;,&#xd;
+				&quot;question&quot;: &quot;您的文化程度？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 6,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10006&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100007&quot;,&#xd;
+				&quot;question&quot;: &quot;您以前有得过甲状腺疾病吗？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 7,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10007&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100008&quot;,&#xd;
+				&quot;question&quot;: &quot;您的亲属中有没有患甲状腺癌的？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 8,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10008&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100009&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否经常（每周≥3次）吃以下食物？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 9,&#xd;
+				&quot;answer&quot;: &quot;A,B,C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10009&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100010&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有糖尿病或者血糖异常？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 10,&#xd;
+				&quot;answer&quot;: &quot;C&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10010&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100011&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否有血脂高（甘油三脂、胆固醇）？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 11,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10011&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100012&quot;,&#xd;
+				&quot;question&quot;: &quot;您曾经有没有接受过头颈部CT检查？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 12,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10012&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100013&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否常常有下列情绪？&quot;,&#xd;
+				&quot;questType&quot;: 2,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 13,&#xd;
+				&quot;answer&quot;: &quot;E&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10013&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100014&quot;,&#xd;
+				&quot;question&quot;: &quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 14,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10014&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100015&quot;,&#xd;
+				&quot;question&quot;: &quot;您与他人的相处的时候，通常是什么样的状态？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 15,&#xd;
+				&quot;answer&quot;: &quot;B&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10015&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100016&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否曾经怀孕次数达3次以上？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 16,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10016&#xd;
+			},&#xd;
+			{&#xd;
+				&quot;code&quot;: &quot;QL-100018&quot;,&#xd;
+				&quot;question&quot;: &quot;您是否患有乳腺增生？&quot;,&#xd;
+				&quot;questType&quot;: 1,&#xd;
+				&quot;epId&quot;: 100,&#xd;
+				&quot;qpId&quot;: 100,&#xd;
+				&quot;sortNo&quot;: 18,&#xd;
+				&quot;answer&quot;: &quot;A&quot;,&#xd;
+				&quot;inputType&quot;: 3,&#xd;
+				&quot;id&quot;: 10018&#xd;
+			}&#xd;
+		]&#xd;
+	},&#xd;
+	&quot;sign&quot;: &quot;${sign2}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="提交获取签名" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+
+//提交sign
+String save_data = &quot; {\r\n&quot; + 
+				&quot;		\&quot;qaQuestList\&quot;: [{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100001\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的性别？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10001\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100003\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的身高＿＿＿（厘米cm）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;168\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10003\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100004\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;体重＿＿＿（公斤kg）\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 4,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;60.98\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10004\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100005\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您生活的城市？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 5,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10005\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100006\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的文化程度？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 6,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10006\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100007\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您以前有得过甲状腺疾病吗？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 7,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10007\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100008\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您的亲属中有没有患甲状腺癌的？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 8,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10008\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100009\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否经常（每周≥3次）吃以下食物？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 9,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A,B,C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10009\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100010\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有糖尿病或者血糖异常？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 10,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;C\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10010\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100011\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否有血脂高（甘油三脂、胆固醇）？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 11,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10011\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100012\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您曾经有没有接受过头颈部CT检查？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 12,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10012\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100013\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否常常有下列情绪？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 2,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 13,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;E\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10013\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100014\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;在平常的生活、工作中您有没有感觉到压力大、焦虑？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 14,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10014\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100015\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您与他人的相处的时候，通常是什么样的状态？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 15,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;B\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10015\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100016\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否曾经怀孕次数达3次以上？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 16,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10016\r\n&quot; + 
+				&quot;			},\r\n&quot; + 
+				&quot;			{\r\n&quot; + 
+				&quot;				\&quot;code\&quot;: \&quot;QL-100018\&quot;,\r\n&quot; + 
+				&quot;				\&quot;question\&quot;: \&quot;您是否患有乳腺增生？\&quot;,\r\n&quot; + 
+				&quot;				\&quot;questType\&quot;: 1,\r\n&quot; + 
+				&quot;				\&quot;epId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;qpId\&quot;: 100,\r\n&quot; + 
+				&quot;				\&quot;sortNo\&quot;: 18,\r\n&quot; + 
+				&quot;				\&quot;answer\&quot;: \&quot;A\&quot;,\r\n&quot; + 
+				&quot;				\&quot;inputType\&quot;: 3,\r\n&quot; + 
+				&quot;				\&quot;id\&quot;: 10018\r\n&quot; + 
+				&quot;			}\r\n&quot; + 
+				&quot;		]\r\n&quot; + 
+				&quot;	}&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJB//UiVCcAPFS1V8ButO70n4KJsY2NJsEAvNbZBU+Sk+3loS6cxtBwcCE0s5X+1wiZ4PV6RL8UGMqioFozWjPUCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAkH/9SJUJwA8VLVXwG607vSfgomxjY0mwQC81tkFT5KT7eWhLpzG0HBwITSzlf7XCJng9XpEvxQYyqKgWjNaM9QIDAQABAkAxixCGgEMVjJZQMvTeKGkhE7kbN1pkQnGhsA4UbRWcgMTDt8ME60YLIamg+vxfWdcv2tAB4NRztB/BXDSv4GpBAiEA9TWqD3EXO9Pi90CX4l/ZeeG2XJIGD1In41hvTyKeVY0CIQCW2895y0G96UzQN0DNgVvsSQSwJKWrKdU5cdqx/sV3CQIhAKDaTi+JATO24ClPzxKpy7C/VvBMvfro6s+hIItp6zG1AiAi+GFoAk4DEAnWWniTKuF8LJEBo/0jaFcdMd9YU47CwQIhAOSLS4oPCHJTfb7BdNR0zeRnnOklfIS20lvzAN8NH8kX&quot;;
+
+
+String sign2 = MD5WithRSAUtil1.type_1(privateKey,pubKey,save_data);
+vars.put(&quot;sign2&quot;,sign2);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
