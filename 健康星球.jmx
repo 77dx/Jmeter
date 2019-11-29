@@ -34,7 +34,7 @@
           </elementProp>
           <elementProp name="" elementType="Header">
             <stringProp name="Header.name">token</stringProp>
-            <stringProp name="Header.value">96cda5e29c594a02a27500b1d915797b</stringProp>
+            <stringProp name="Header.value">636a49b677e94026b4e05868c16968c8</stringProp>
           </elementProp>
         </collectionProp>
       </HeaderManager>
@@ -2115,7 +2115,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="三高" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="三高" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -3350,6 +3350,1159 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;type&quot;:&quot;threeHigh&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/customer/qa/result/current</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="糖尿病" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="(糖尿病)测试题列表" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;type&quot;: &quot;diabetes&quot;,&#xd;
+	&quot;sex&quot;: 2&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/customer/qa/operlist</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="(糖尿病)提交测试题V2" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;qaQuestList&quot;: [{&#xd;
+			&quot;id&quot;: 305,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您有糖尿病吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001205&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 5,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 550,&#xd;
+					&quot;questId&quot;: 305,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;有&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544871000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:51&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 551,&#xd;
+					&quot;questId&quot;: 305,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;没有或不清楚&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [{&#xd;
+				&quot;id&quot;: 305,&#xd;
+				&quot;questId&quot;: 305,&#xd;
+				&quot;ruleType&quot;: 3,&#xd;
+				&quot;ruleContent&quot;: &quot;A&quot;,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;createTime&quot;: 1573544883000,&#xd;
+				&quot;createTimeDesc&quot;: &quot;2019-11-12 15:48:03&quot;&#xd;
+			}],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 306,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您的体重（kg）__？注意是公斤哟&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001206&quot;,&#xd;
+			&quot;questType&quot;: 3,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 6,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;168&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [],&#xd;
+			&quot;qaQuestRuleList&quot;: [{&#xd;
+				&quot;id&quot;: 320,&#xd;
+				&quot;questId&quot;: 306,&#xd;
+				&quot;ruleType&quot;: 1,&#xd;
+				&quot;ruleContent&quot;: &quot;^[1-9][0-9]*([.]{1}[0-9]+){0,1}$&quot;,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;createTime&quot;: 1573544883000,&#xd;
+				&quot;createTimeDesc&quot;: &quot;2019-11-12 15:48:03&quot;&#xd;
+			}],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 308,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您的腰围大概是？（女性）&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001208&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 8,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot; A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 555,&#xd;
+					&quot;questId&quot;: 308,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;80cm以下（或裤子码数＜29码）&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 556,&#xd;
+					&quot;questId&quot;: 308,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;80~85cm（或裤子码数29~31码）&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 557,&#xd;
+					&quot;questId&quot;: 308,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;≥85cm（或裤子码数≥31码）&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 309,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您血压怎么样？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001209&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 9,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 558,&#xd;
+					&quot;questId&quot;: 309,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;血压正常&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 559,&#xd;
+					&quot;questId&quot;: 309,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;有高血压，但是没有治疗&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 560,&#xd;
+					&quot;questId&quot;: 309,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;有高血压，在治疗中&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 561,&#xd;
+					&quot;questId&quot;: 309,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;不太清楚，没测量过&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 310,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您血脂高吗？（可多选）&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001210&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 10,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot; AB&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 562,&#xd;
+					&quot;questId&quot;: 310,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;总胆固醇（TC）偏高&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 563,&#xd;
+					&quot;questId&quot;: 310,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;甘油三酯（TG）偏高&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 564,&#xd;
+					&quot;questId&quot;: 310,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;低密度脂蛋白（LDL-C）偏高&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 565,&#xd;
+					&quot;questId&quot;: 310,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;高密度脂蛋白（HDL-C）偏低&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 566,&#xd;
+					&quot;questId&quot;: 310,&#xd;
+					&quot;key&quot;: &quot;E&quot;,&#xd;
+					&quot;desc&quot;: &quot;医生说我血脂高，但我不清楚是哪个指标异常&quot;,&#xd;
+					&quot;sortNo&quot;: 5,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 567,&#xd;
+					&quot;questId&quot;: 310,&#xd;
+					&quot;key&quot;: &quot;F&quot;,&#xd;
+					&quot;desc&quot;: &quot;血脂正常或不清楚&quot;,&#xd;
+					&quot;sortNo&quot;: 6,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [{&#xd;
+				&quot;id&quot;: 321,&#xd;
+				&quot;questId&quot;: 310,&#xd;
+				&quot;ruleType&quot;: 2,&#xd;
+				&quot;ruleContent&quot;: &quot;[{\&quot;key\&quot;:\&quot;A\&quot;,\&quot;list\&quot;:[\&quot;E\&quot;,\&quot;F\&quot;]},{\&quot;key\&quot;:\&quot;B\&quot;,\&quot;list\&quot;:[\&quot;E\&quot;,\&quot;F\&quot;]},{\&quot;key\&quot;:\&quot;C\&quot;,\&quot;list\&quot;: [\&quot;E\&quot;,\&quot;F\&quot;]},{\&quot;key\&quot;:\&quot;D\&quot;,\&quot;list\&quot;: [\&quot;E\&quot;,\&quot;F\&quot;]},{\&quot;key\&quot;:\&quot;E\&quot;,\&quot;list\&quot;: [\&quot;A\&quot;,\&quot;B\&quot;,\&quot;C\&quot;,\&quot;D\&quot;,\&quot;F\&quot;]},{\&quot;key\&quot;:\&quot;F\&quot;,\&quot;list\&quot;: [\&quot;A\&quot;,\&quot;B\&quot;,\&quot;C\&quot;,\&quot;D\&quot;,\&quot;E\&quot;]}]&quot;,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;createTime&quot;: 1573544883000,&#xd;
+				&quot;createTimeDesc&quot;: &quot;2019-11-12 15:48:03&quot;&#xd;
+			}],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 311,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您有尿酸高吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001211&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 11,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 568,&#xd;
+					&quot;questId&quot;: 311,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;尿酸高，没有或者偶尔会关节痛&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 569,&#xd;
+					&quot;questId&quot;: 311,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;尿酸高，而且经常关节痛&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 570,&#xd;
+					&quot;questId&quot;: 311,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;尿酸高，关节痛而且变形了&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 571,&#xd;
+					&quot;questId&quot;: 311,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;尿酸正常或不清楚&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 312,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您有脂肪肝吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001212&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 12,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 572,&#xd;
+					&quot;questId&quot;: 312,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;有，但是平时没什么症状&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 573,&#xd;
+					&quot;questId&quot;: 312,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;有，偶尔会觉得没什么食欲、很疲劳、右上腹隐隐作痛&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 574,&#xd;
+					&quot;questId&quot;: 312,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;没有或不清楚&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 313,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您有多囊卵巢综合征吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001213&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 13,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot; C&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 575,&#xd;
+					&quot;questId&quot;: 313,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;有，但是没有治疗&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 576,&#xd;
+					&quot;questId&quot;: 313,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;有，正在接受治疗&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 577,&#xd;
+					&quot;questId&quot;: 313,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;没有或不清楚&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 314,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;目前您处于怀孕期间吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001214&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 14,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 578,&#xd;
+					&quot;questId&quot;: 314,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;备孕中，期待好消息&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 579,&#xd;
+					&quot;questId&quot;: 314,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;孕早期（0~3个月）&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 580,&#xd;
+					&quot;questId&quot;: 314,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;孕中期（4~7个月）&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 581,&#xd;
+					&quot;questId&quot;: 314,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;孕晚期（7月以上），准备卸货啦&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 582,&#xd;
+					&quot;questId&quot;: 314,&#xd;
+					&quot;key&quot;: &quot;E&quot;,&#xd;
+					&quot;desc&quot;: &quot;没有怀孕，也没有备孕计划&quot;,&#xd;
+					&quot;sortNo&quot;: 5,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 315,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您在怀孕期间有发现过血糖高/糖尿病吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001215&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 15,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 583,&#xd;
+					&quot;questId&quot;: 315,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;有&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 584,&#xd;
+					&quot;questId&quot;: 315,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;没有，血糖正常&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 585,&#xd;
+					&quot;questId&quot;: 315,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;我还没当妈妈呢！&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 316,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您的亲属有患糖尿病的吗？（可多选）&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001216&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 16,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 586,&#xd;
+					&quot;questId&quot;: 316,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;父母、子女、兄弟姐妹中至少1人有糖尿病&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 587,&#xd;
+					&quot;questId&quot;: 316,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;叔伯、姑姨舅、（外）祖父母中至少1人有糖尿病&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 588,&#xd;
+					&quot;questId&quot;: 316,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;没有或不清楚&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [{&#xd;
+				&quot;id&quot;: 323,&#xd;
+				&quot;questId&quot;: 316,&#xd;
+				&quot;ruleType&quot;: 2,&#xd;
+				&quot;ruleContent&quot;: &quot;[{\&quot;key\&quot;:\&quot;A\&quot;,\&quot;list\&quot;:[\&quot;C\&quot;]},{\&quot;key\&quot;:\&quot;B\&quot;,\&quot;list\&quot;:[\&quot;C\&quot;]},{\&quot;key\&quot;:\&quot;C\&quot;,\&quot;list\&quot;:[\&quot;A\&quot;,\&quot;B\&quot;]}]&quot;,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;createTime&quot;: 1573544883000,&#xd;
+				&quot;createTimeDesc&quot;: &quot;2019-11-12 15:48:03&quot;&#xd;
+			}],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 317,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您吸烟吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001217&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 17,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 589,&#xd;
+					&quot;questId&quot;: 317,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;饭后一支烟，赛过活神仙，我经常吸烟&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 590,&#xd;
+					&quot;questId&quot;: 317,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;由于场合需要，我偶尔会吸烟&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 591,&#xd;
+					&quot;questId&quot;: 317,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;我已经戒烟了，为了健康要对自己狠一点&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 592,&#xd;
+					&quot;questId&quot;: 317,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;吸烟有害健康，我从来不吸烟&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 318,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您喝酒吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001218&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 18,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 593,&#xd;
+					&quot;questId&quot;: 318,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;经常犯酒瘾，经常喝酒&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 594,&#xd;
+					&quot;questId&quot;: 318,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;偶尔犯酒瘾，小酌一杯&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 595,&#xd;
+					&quot;questId&quot;: 318,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;我从来都是滴酒不沾&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 319,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您经常吃蔬菜吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001219&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 19,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot; C&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 596,&#xd;
+					&quot;questId&quot;: 319,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;我是素食主义者&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 597,&#xd;
+					&quot;questId&quot;: 319,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;蔬菜健康又好吃，我每顿都会吃蔬菜&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 598,&#xd;
+					&quot;questId&quot;: 319,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;不是所有的蔬菜都能得到我是我青睐，只独宠那几样蔬菜&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 599,&#xd;
+					&quot;questId&quot;: 319,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;我是肉食主义者，很少或几乎不吃蔬菜&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 320,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您有经常（每周≥3次）吃以下美食吗？（可多选）&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001220&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 20,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 600,&#xd;
+					&quot;questId&quot;: 320,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;披萨、汉堡&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 601,&#xd;
+					&quot;questId&quot;: 320,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;油炸食品、烧烤、烤肉&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 602,&#xd;
+					&quot;questId&quot;: 320,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;巧克力、冰淇淋、糖果等甜食&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 603,&#xd;
+					&quot;questId&quot;: 320,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;偶尔或几乎不吃以上食物&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [{&#xd;
+				&quot;id&quot;: 324,&#xd;
+				&quot;questId&quot;: 320,&#xd;
+				&quot;ruleType&quot;: 2,&#xd;
+				&quot;ruleContent&quot;: &quot;[{\&quot;key\&quot;:\&quot;A\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;B\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;C\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;D\&quot;,\&quot;list\&quot;: [\&quot;A\&quot;,\&quot;B\&quot;,\&quot;C\&quot;]}]&quot;,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;createTime&quot;: 1573544883000,&#xd;
+				&quot;createTimeDesc&quot;: &quot;2019-11-12 15:48:03&quot;&#xd;
+			}],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 321,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您爱吃哪些水果？（可多选）&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001221&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 21,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;ABC&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 604,&#xd;
+					&quot;questId&quot;: 321,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;含糖量高的，如柿子、香蕉、芒果、枣子等&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 605,&#xd;
+					&quot;questId&quot;: 321,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;含糖量适中的，如苹果、梨、橙子、哈密瓜等&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 606,&#xd;
+					&quot;questId&quot;: 321,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;含糖量较低的，如西瓜、木瓜、草莓等&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 607,&#xd;
+					&quot;questId&quot;: 321,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;其他水果，不知道含糖量高不高&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544872000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:52&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [{&#xd;
+				&quot;id&quot;: 325,&#xd;
+				&quot;questId&quot;: 321,&#xd;
+				&quot;ruleType&quot;: 2,&#xd;
+				&quot;ruleContent&quot;: &quot;[{\&quot;key\&quot;:\&quot;A\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;B\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;C\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;D\&quot;,\&quot;list\&quot;: [\&quot;A\&quot;,\&quot;B\&quot;,\&quot;C\&quot;]}]&quot;,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;createTime&quot;: 1573544883000,&#xd;
+				&quot;createTimeDesc&quot;: &quot;2019-11-12 15:48:03&quot;&#xd;
+			}],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 322,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您睡眠好吗？（可多选）&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001222&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 22,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;B&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 608,&#xd;
+					&quot;questId&quot;: 322,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;常熬夜或辗转反侧难以入睡，一天平均睡眠时间低于5小时&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 609,&#xd;
+					&quot;questId&quot;: 322,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;经常做梦，睡醒后感到很疲劳&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 610,&#xd;
+					&quot;questId&quot;: 322,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;很容易醒，醒了之后很难再入睡&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 611,&#xd;
+					&quot;questId&quot;: 322,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;我的睡眠还不错&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [{&#xd;
+				&quot;id&quot;: 326,&#xd;
+				&quot;questId&quot;: 322,&#xd;
+				&quot;ruleType&quot;: 2,&#xd;
+				&quot;ruleContent&quot;: &quot;[{\&quot;key\&quot;:\&quot;A\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;B\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;C\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;D\&quot;,\&quot;list\&quot;: [\&quot;A\&quot;,\&quot;B\&quot;,\&quot;C\&quot;]}]&quot;,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;createTime&quot;: 1573544883000,&#xd;
+				&quot;createTimeDesc&quot;: &quot;2019-11-12 15:48:03&quot;&#xd;
+			}],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 323,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您经常运动吗？&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001223&quot;,&#xd;
+			&quot;questType&quot;: 1,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 23,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;C&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 612,&#xd;
+					&quot;questId&quot;: 323,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;我爱运动，每周运动3次以上&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 613,&#xd;
+					&quot;questId&quot;: 323,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;偶尔兴致来了就去运动&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 614,&#xd;
+					&quot;questId&quot;: 323,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;能躺着绝不坐着，更别说运动了&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		},&#xd;
+		{&#xd;
+			&quot;id&quot;: 324,&#xd;
+			&quot;qpId&quot;: 12,&#xd;
+			&quot;question&quot;: &quot;您最近有出现以下情况吗？（可多选）&quot;,&#xd;
+			&quot;subHead&quot;: &quot;&quot;,&#xd;
+			&quot;code&quot;: &quot;QL-001224&quot;,&#xd;
+			&quot;questType&quot;: 2,&#xd;
+			&quot;inputType&quot;: 3,&#xd;
+			&quot;sortNo&quot;: 24,&#xd;
+			&quot;createTime&quot;: 1573544856000,&#xd;
+			&quot;epId&quot;: 12,&#xd;
+			&quot;answer&quot;: &quot;A&quot;,&#xd;
+			&quot;qaQuestOptionList&quot;: [{&#xd;
+					&quot;id&quot;: 615,&#xd;
+					&quot;questId&quot;: 324,&#xd;
+					&quot;key&quot;: &quot;A&quot;,&#xd;
+					&quot;desc&quot;: &quot;容易口干，喝很多水，尿的也多&quot;,&#xd;
+					&quot;sortNo&quot;: 1,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 616,&#xd;
+					&quot;questId&quot;: 324,&#xd;
+					&quot;key&quot;: &quot;B&quot;,&#xd;
+					&quot;desc&quot;: &quot;容易饿，吃得多了，体重反而降了&quot;,&#xd;
+					&quot;sortNo&quot;: 2,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 617,&#xd;
+					&quot;questId&quot;: 324,&#xd;
+					&quot;key&quot;: &quot;C&quot;,&#xd;
+					&quot;desc&quot;: &quot;经常觉得没精神、疲乏无力&quot;,&#xd;
+					&quot;sortNo&quot;: 3,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: 618,&#xd;
+					&quot;questId&quot;: 324,&#xd;
+					&quot;key&quot;: &quot;D&quot;,&#xd;
+					&quot;desc&quot;: &quot;以上都没有&quot;,&#xd;
+					&quot;sortNo&quot;: 4,&#xd;
+					&quot;createTime&quot;: 1573544873000,&#xd;
+					&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:53&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;qaQuestRuleList&quot;: [{&#xd;
+				&quot;id&quot;: 327,&#xd;
+				&quot;questId&quot;: 324,&#xd;
+				&quot;ruleType&quot;: 2,&#xd;
+				&quot;ruleContent&quot;: &quot;[{\&quot;key\&quot;:\&quot;A\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;B\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;C\&quot;,\&quot;list\&quot;:[\&quot;D\&quot;]},{\&quot;key\&quot;:\&quot;D\&quot;,\&quot;list\&quot;: [\&quot;A\&quot;,\&quot;B\&quot;,\&quot;C\&quot;]}]&quot;,&#xd;
+				&quot;sortNo&quot;: 1,&#xd;
+				&quot;createTime&quot;: 1573544883000,&#xd;
+				&quot;createTimeDesc&quot;: &quot;2019-11-12 15:48:03&quot;&#xd;
+			}],&#xd;
+			&quot;mammaryRuleList&quot;: [],&#xd;
+			&quot;createTimeDesc&quot;: &quot;2019-11-12 15:47:36&quot;&#xd;
+		}&#xd;
+	]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/customer/qa/opersavev2</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1019197760">&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="(糖尿病)查看结果" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;type&quot;:&quot;diabetes&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>

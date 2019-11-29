@@ -29,7 +29,7 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">192.168.5.111</stringProp>
+          <stringProp name="HTTPSampler.domain">mp.flins.com.cn</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
@@ -70,7 +70,7 @@
 		&quot;channelCode&quot;: &quot;channelcode004&quot;,&#xd;
 		&quot;channelName&quot;: &quot;再保&quot;,&#xd;
 		&quot;benefitCode&quot;: &quot;benefitcode004&quot;,&#xd;
-		&quot;productName&quot;: &quot;重疾险&quot;,&#xd;
+		&quot;productName&quot;: &quot;安全云脑险&quot;,&#xd;
 		&quot;cpCode&quot;: &quot;cp003&quot;,&#xd;
 		&quot;cpName&quot;: &quot;亚太再保&quot;,&#xd;
 		&quot;planCode&quot;: &quot;plan003&quot;,&#xd;
@@ -170,7 +170,7 @@ vars.put(&quot;token&quot;,token);
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取七牛token" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取七牛token" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -217,7 +217,7 @@ vars.put(&quot;token&quot;,token);
           </ConfigTestElement>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="-1" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="-1" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -262,7 +262,7 @@ vars.put(&quot;token&quot;,token);
             <stringProp name="filename"></stringProp>
             <stringProp name="script">import com.image.util.*;
 
-String code = ImageUtil.base64(&quot;D:/images/TR6.jpg&quot;);
+String code = ImageUtil.base64(&quot;D:/images/TR28.jpg&quot;);
 vars.put(&quot;base64&quot;,code);
 </stringProp>
           </BeanShellPreProcessor>
@@ -274,7 +274,7 @@ vars.put(&quot;base64&quot;,code);
           </JSONPostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="上传图片" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="上传图片" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -362,7 +362,7 @@ vars.put(&quot;base64&quot;,code);
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询测评单信息" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询测评单信息" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -647,9 +647,9 @@ vars.put(&quot;zbsign3&quot;,zbsign3);</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">bus.flins.com.cn</stringProp>
-          <stringProp name="HTTPSampler.port">443</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
           <stringProp name="HTTPSampler.path">/business/api/dispatch</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -810,7 +810,7 @@ vars.put(&quot;token&quot;,token);
             <stringProp name="filename"></stringProp>
             <stringProp name="script">import com.image.util.*;
 
-String code = ImageUtil.base64(&quot;D:/images/555.jpg&quot;);
+String code = ImageUtil.base64(&quot;D:/images/invalid.jpg&quot;);
 vars.put(&quot;base64&quot;,code);
 </stringProp>
           </BeanShellPreProcessor>
@@ -1302,7 +1302,7 @@ vars.put(&quot;token&quot;,token);
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取七牛token" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取七牛token" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1335,7 +1335,7 @@ vars.put(&quot;token&quot;,token);
           </JSONPostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="-1" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="-1" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1380,7 +1380,7 @@ vars.put(&quot;token&quot;,token);
             <stringProp name="filename"></stringProp>
             <stringProp name="script">import com.image.util.*;
 
-String code = ImageUtil.base64(&quot;D:/images/3.jpg&quot;);
+String code = ImageUtil.base64(&quot;D:/images/222.png&quot;);
 vars.put(&quot;base64&quot;,code);
 </stringProp>
           </BeanShellPreProcessor>
@@ -1392,7 +1392,7 @@ vars.put(&quot;base64&quot;,code);
           </JSONPostProcessor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="上传图片" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="上传图片" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -1480,14 +1480,14 @@ vars.put(&quot;base64&quot;,code);
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询测评单信息" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询测评单信息" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-    &quot;appId&quot;: &quot;8Ot8ygIByjRtYvFvXvaXmY9IqfE7QQJS&quot;,&#xd;
+    &quot;appId&quot;: &quot;M8FMaAofjnk43ujdSryZ4Xjhgl38ilt8&quot;,&#xd;
     &quot;appKey&quot;: &quot;key1&quot;,&#xd;
     &quot;apiCode&quot;: &quot;evaluateInfo&quot;,&#xd;
     &quot;version&quot;: &quot;1.0&quot;,&#xd;
@@ -1534,8 +1534,8 @@ log.info(bzId);
 String data2 = &quot;{\r\n&quot; + 
 				&quot;        \&quot;bzId\&quot;:\&quot;&quot;+bzId+&quot;\&quot;\r\n&quot; + 
 				&quot;    }&quot;;
-String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJkERM1wGJlnCIz8njQlekplS1/F3K2VqJ4fIuV3UoqrPz3I+B8a4eg122zic01QJFF1m2linIs8nZuzwLDcGrkCAwEAAQ==&quot;;
-String privateKey = &quot;MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAmQREzXAYmWcIjPyeNCV6SmVLX8XcrZWonh8i5XdSiqs/Pcj4Hxrh6DXbbOJzTVAkUXWbaWKcizydm7PAsNwauQIDAQABAkA9Cy/riTm3ERyfKjRu9ziXL1vnhEbqVRckpaVFR9n9CYA21m++U4I8MyGeNv0NV6GEeATmnsx4xhdnXzD6pfZRAiEAzUCuMD9vYtpXWQHNFDJkgMJKGB8r307CkgYvZ0azlg0CIQC+2Vlr3+mHsXP1qVKJZEChgwhyGXbzhlayLsS5qsr4XQIgVNbEaTr/PnwDmM3Ox+dgdXxZhgj0aHQ0pokZ9PVba80CICKf6DtMCmBV74XYTGMkzxz+Wt/ogs43xy7YkVRmCiD5AiEAxsurHTXqhpBy/2V7qUz6RKDzVM+1Qeu/KTfb3XX+fuw=&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALXepm9Ukflb2nBq+bGxM95uYlnKpjXiYqSWhpyeWxgxK44Jai5FT1yEQm7zEVDRHvyJSXZi0U9LAc2CUQ2EG3MCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAtd6mb1SR+VvacGr5sbEz3m5iWcqmNeJipJaGnJ5bGDErjglqLkVPXIRCbvMRUNEe/IlJdmLRT0sBzYJRDYQbcwIDAQABAkAPdFEOStBwsRZ50Q1QxS8UKqse2DKRh6A8PjJIIsi44GgYMvqXvlN+Vy5q5nYhkvB3Ndfhtn17f5qMalmRUlYRAiEA1/jXOGF4IWMF2okLEX6uRdN7J0o2iF8pcJGVr+l1gKkCIQDXk8SFzDUmZ7Ihvvns+NatHYx/U14Dnh5wdR04HgoguwIgTOAmu8r2F+xHiSJ+7htJrVE55SJlhuVYutkXjyZqzQECIQCYTWhxUqVWPbqGxuLRfbhFU/P33JE2IxbEQqljBS4IkwIgJswLDvDUHtjfuf0hLw61HIRN3ZflB7R/gj+Hw5qUspQ=&quot;;
 
 String zbsign2 = MD5WithRSAUtil1.type_1(privateKey,pubKey,data2);
 vars.put(&quot;zbsign2&quot;,zbsign2);</stringProp>
@@ -1559,7 +1559,7 @@ vars.put(&quot;zbsign2&quot;,zbsign2);</stringProp>
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-    &quot;appId&quot;: &quot;8Ot8ygIByjRtYvFvXvaXmY9IqfE7QQJS&quot;,&#xd;
+    &quot;appId&quot;: &quot;M8FMaAofjnk43ujdSryZ4Xjhgl38ilt8&quot;,&#xd;
     &quot;appKey&quot;: &quot;key1&quot;,&#xd;
     &quot;apiCode&quot;: &quot;feedbackInsurance&quot;,&#xd;
     &quot;version&quot;: &quot;1.0&quot;,&#xd;
@@ -1618,8 +1618,8 @@ String data3 = &quot;{\r\n&quot; +
 				&quot;        \&quot;cancelTime\&quot;:\&quot;\&quot;\r\n&quot; + 
 				&quot;      }&quot;;
 vars.put(&quot;data3&quot;,data3);
-String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJkERM1wGJlnCIz8njQlekplS1/F3K2VqJ4fIuV3UoqrPz3I+B8a4eg122zic01QJFF1m2linIs8nZuzwLDcGrkCAwEAAQ==&quot;;
-String privateKey = &quot;MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAmQREzXAYmWcIjPyeNCV6SmVLX8XcrZWonh8i5XdSiqs/Pcj4Hxrh6DXbbOJzTVAkUXWbaWKcizydm7PAsNwauQIDAQABAkA9Cy/riTm3ERyfKjRu9ziXL1vnhEbqVRckpaVFR9n9CYA21m++U4I8MyGeNv0NV6GEeATmnsx4xhdnXzD6pfZRAiEAzUCuMD9vYtpXWQHNFDJkgMJKGB8r307CkgYvZ0azlg0CIQC+2Vlr3+mHsXP1qVKJZEChgwhyGXbzhlayLsS5qsr4XQIgVNbEaTr/PnwDmM3Ox+dgdXxZhgj0aHQ0pokZ9PVba80CICKf6DtMCmBV74XYTGMkzxz+Wt/ogs43xy7YkVRmCiD5AiEAxsurHTXqhpBy/2V7qUz6RKDzVM+1Qeu/KTfb3XX+fuw=&quot;;
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALXepm9Ukflb2nBq+bGxM95uYlnKpjXiYqSWhpyeWxgxK44Jai5FT1yEQm7zEVDRHvyJSXZi0U9LAc2CUQ2EG3MCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAtd6mb1SR+VvacGr5sbEz3m5iWcqmNeJipJaGnJ5bGDErjglqLkVPXIRCbvMRUNEe/IlJdmLRT0sBzYJRDYQbcwIDAQABAkAPdFEOStBwsRZ50Q1QxS8UKqse2DKRh6A8PjJIIsi44GgYMvqXvlN+Vy5q5nYhkvB3Ndfhtn17f5qMalmRUlYRAiEA1/jXOGF4IWMF2okLEX6uRdN7J0o2iF8pcJGVr+l1gKkCIQDXk8SFzDUmZ7Ihvvns+NatHYx/U14Dnh5wdR04HgoguwIgTOAmu8r2F+xHiSJ+7htJrVE55SJlhuVYutkXjyZqzQECIQCYTWhxUqVWPbqGxuLRfbhFU/P33JE2IxbEQqljBS4IkwIgJswLDvDUHtjfuf0hLw61HIRN3ZflB7R/gj+Hw5qUspQ=&quot;;
 
 
 String zbsign3 = MD5WithRSAUtil1.type_1(privateKey,pubKey,data3);
