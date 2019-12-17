@@ -12,7 +12,7 @@
       <stringProp name="TestPlan.user_define_classpath">E:\miaomiao\apache-jmeter-4.0\myjar\zb_sign.jar,E:\miaomiao\apache-jmeter-4.0\lib\ext\fastjson-1.2.58.jar</stringProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="再保流程(测试环境)" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="再保流程(测试环境)" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -262,7 +262,7 @@ vars.put(&quot;token&quot;,token);
             <stringProp name="filename"></stringProp>
             <stringProp name="script">import com.image.util.*;
 
-String code = ImageUtil.base64(&quot;D:/images/TR28.jpg&quot;);
+String code = ImageUtil.base64(&quot;D:/images/TR6.jpg&quot;);
 vars.put(&quot;base64&quot;,code);
 </stringProp>
           </BeanShellPreProcessor>
@@ -434,7 +434,7 @@ vars.put(&quot;zbsign2&quot;,zbsign2);</stringProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="反馈承保数据" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="反馈承保数据" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -457,7 +457,8 @@ vars.put(&quot;zbsign2&quot;,zbsign2);</stringProp>
         &quot;insuranceStatus&quot;:&quot;正常&quot; ,&#xd;
         &quot;cname&quot;:&quot;&quot;,&#xd;
         &quot;idNumber&quot;:&quot;&quot;,&#xd;
-        &quot;insuranceTime&quot;:&quot;2019-8-29 08:08:00&quot;,&#xd;
+        &quot;insuranceTime&quot;:&quot;&quot;,&#xd;
+        &quot;createDate&quot;:&quot;2019-8-29 08:08:00&quot;,&#xd;
         &quot;isCancel&quot;:&quot;true&quot;,&#xd;
         &quot;cancelTime&quot;:&quot;&quot;&#xd;
       },  &#xd;
@@ -510,7 +511,8 @@ String data3 = &quot;{\r\n&quot; +
 				&quot;        \&quot;insuranceStatus\&quot;:\&quot;正常\&quot; ,\r\n&quot; + 
 				&quot;        \&quot;cname\&quot;:\&quot;\&quot;,\r\n&quot; + 
 				&quot;        \&quot;idNumber\&quot;:\&quot;\&quot;,\r\n&quot; + 
-				&quot;        \&quot;insuranceTime\&quot;:\&quot;2019-8-29 08:08:00\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceTime\&quot;:\&quot;\&quot;,\r\n&quot; + 
+				&quot;        \&quot;createDate\&quot;:\&quot;2019-8-29 08:08:00\&quot;,\r\n&quot; + 
 				&quot;        \&quot;isCancel\&quot;:\&quot;true\&quot;,\r\n&quot; + 
 				&quot;        \&quot;cancelTime\&quot;:\&quot;\&quot;\r\n&quot; + 
 				&quot;      }&quot;;
@@ -1146,7 +1148,7 @@ vars.put(&quot;zbsign3&quot;,zbsign3);</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="再保流程（预发环境)" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="再保流程（预发环境)" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
