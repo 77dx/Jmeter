@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="亚太" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath">E:\miaomiao\apache-jmeter-4.0\myjar\zb_sign.jar,E:\miaomiao\apache-jmeter-4.0\lib\ext\fastjson-1.2.58.jar</stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="测试商户(正式环境)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">bus.flins.com.cn</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json;charset=UTF-8</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="反馈承保数据" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appId&quot;: &quot;8Ot8ygIByjRtYvFvXvaXmY9IqfE7QQJS&quot;,&#xd;
+    &quot;appKey&quot;: &quot;key1&quot;,&#xd;
+    &quot;apiCode&quot;: &quot;feedbackInsurance&quot;,&#xd;
+    &quot;version&quot;: &quot;1.0&quot;,&#xd;
+    &quot;data&quot;: ${data3},  &#xd;
+    &quot;sign&quot;:&quot;${zbsign3}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/business/api/dispatch</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+import com.alibaba.fastjson.JSONObject;
+
+//提取bzid和serialNumber
+//String response_data = prev.getResponseDataAsString(); 
+//JSONObject object = JSONObject.parseObject(response_data);
+//JSONObject data = object.getJSONObject(&quot;data&quot;);
+//String ser = data.getString(&quot;serialNumber&quot;);
+//String b = data.getString(&quot;bzId&quot;);
+
+
+//获取第二个sign
+String data3 = &quot;{\r\n&quot; + 
+				&quot;        \&quot;bzId\&quot;:\&quot;bisss\&quot;,\r\n&quot; + 
+				&quot;        \&quot;serialNumber\&quot;:\&quot;\&quot;,\r\n&quot; + 
+				&quot;        \&quot;benefitCode\&quot;:\&quot;benefitcode004\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cpCode\&quot;:\&quot;cp003\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceNo\&quot;:\&quot;Insurance001\&quot;,\r\n&quot; + 
+				&quot;        \&quot;premium\&quot;:\&quot;2000\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cpName\&quot;:\&quot;亚太再保\&quot;,\r\n&quot; + 
+				&quot;        \&quot;productName\&quot;:\&quot;重疾险\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceStatus\&quot;:\&quot;正常\&quot; ,\r\n&quot; + 
+				&quot;        \&quot;cname\&quot;:\&quot;cname\&quot;,\r\n&quot; + 
+				&quot;        \&quot;idNumber\&quot;:\&quot;idnumber\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceTime\&quot;:\&quot;\&quot;,\r\n&quot; + 
+				&quot;        \&quot;createDate\&quot;:\&quot;2015-01-01 11:11:11\&quot;,\r\n&quot; + 
+				&quot;        \&quot;isCancel\&quot;:\&quot;true\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cancelTime\&quot;:\&quot;\&quot;\r\n&quot; + 
+				&quot;      }&quot;;
+vars.put(&quot;data3&quot;,data3);
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJkERM1wGJlnCIz8njQlekplS1/F3K2VqJ4fIuV3UoqrPz3I+B8a4eg122zic01QJFF1m2linIs8nZuzwLDcGrkCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAmQREzXAYmWcIjPyeNCV6SmVLX8XcrZWonh8i5XdSiqs/Pcj4Hxrh6DXbbOJzTVAkUXWbaWKcizydm7PAsNwauQIDAQABAkA9Cy/riTm3ERyfKjRu9ziXL1vnhEbqVRckpaVFR9n9CYA21m++U4I8MyGeNv0NV6GEeATmnsx4xhdnXzD6pfZRAiEAzUCuMD9vYtpXWQHNFDJkgMJKGB8r307CkgYvZ0azlg0CIQC+2Vlr3+mHsXP1qVKJZEChgwhyGXbzhlayLsS5qsr4XQIgVNbEaTr/PnwDmM3Ox+dgdXxZhgj0aHQ0pokZ9PVba80CICKf6DtMCmBV74XYTGMkzxz+Wt/ogs43xy7YkVRmCiD5AiEAxsurHTXqhpBy/2V7qUz6RKDzVM+1Qeu/KTfb3XX+fuw=&quot;;
+
+
+String zbsign3 = MD5WithRSAUtil1.type_1(privateKey,pubKey,data3);
+vars.put(&quot;zbsign3&quot;,zbsign3);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="亚太流程(测试环境)" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">mp.flins.com.cn</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json;charset=UTF-8</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="反馈承保数据" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appId&quot;: &quot;eka26sc1FlfZT7SpGppUxiArihXoJPb47A&quot;,&#xd;
+    &quot;appKey&quot;: &quot;key1&quot;,&#xd;
+    &quot;apiCode&quot;: &quot;feedbackInsurance&quot;,&#xd;
+    &quot;version&quot;: &quot;1.0&quot;,&#xd;
+    &quot;data&quot;: ${data3},  &#xd;
+    &quot;sign&quot;:&quot;${zbsign3}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/business/api/dispatch</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+import com.alibaba.fastjson.JSONObject;
+
+//提取bzid和serialNumber
+//String response_data = prev.getResponseDataAsString(); 
+//JSONObject object = JSONObject.parseObject(response_data);
+//JSONObject data = object.getJSONObject(&quot;data&quot;);
+//String ser = data.getString(&quot;serialNumber&quot;);
+//String b = data.getString(&quot;bzId&quot;);
+
+
+//获取第二个sign
+String data3 = &quot;{\r\n&quot; + 
+				&quot;        \&quot;bzId\&quot;:\&quot;bisss\&quot;,\r\n&quot; + 
+				&quot;        \&quot;serialNumber\&quot;:\&quot;\&quot;,\r\n&quot; + 
+				&quot;        \&quot;benefitCode\&quot;:\&quot;benefitcode004\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cpCode\&quot;:\&quot;cp003\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceNo\&quot;:\&quot;Insurance001\&quot;,\r\n&quot; + 
+				&quot;        \&quot;premium\&quot;:\&quot;2000\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cpName\&quot;:\&quot;亚太再保\&quot;,\r\n&quot; + 
+				&quot;        \&quot;productName\&quot;:\&quot;重疾险\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceStatus\&quot;:\&quot;正常\&quot; ,\r\n&quot; + 
+				&quot;        \&quot;cname\&quot;:\&quot;cname\&quot;,\r\n&quot; + 
+				&quot;        \&quot;idNumber\&quot;:\&quot;idnumber\&quot;,\r\n&quot; + 
+				&quot;        \&quot;createDate\&quot;:\&quot;2015-01-01 11:11:11\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceTime\&quot;:\&quot;2018-01-01 11:11:11\&quot;,\r\n&quot; + 
+				&quot;        \&quot;isCancel\&quot;:\&quot;true\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cancelTime\&quot;:\&quot;\&quot;\r\n&quot; + 
+				&quot;      }&quot;;
+vars.put(&quot;data3&quot;,data3);
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIiSSzrzzHZc/e9Hr5YIqpwZTPa2eC/DY46aPaAqCCrwZfEN8y9DGRtS7gLrFnsv9GiP9yQ8DtzkVOuPueSmEN8CAwEAAQ==&quot;;
+String privateKey = &quot;MIIBUgIBADANBgkqhkiG9w0BAQEFAASCATwwggE4AgEAAkEAiJJLOvPMdlz970evlgiqnBlM9rZ4L8Njjpo9oCoIKvBl8Q3zL0MZG1LuAusWey/0aI/3JDwO3ORU64+55KYQ3wIDAQABAkA4cr9Fjp9kDOuoiyi4Crz56Ds3fhQPKeNsfbQbD0Rw+m0TP00uxPRQcvv1iH3WyYOiDpJJEhbdFwK3A038o3qBAiEA7fHH7o3q5YxXhTevcMHAyE5w2kcc9Szqu/ZHKG2FH9MCIQCS70eGsJi9QrPrqXiNsErIfvVWZyK64s1LZ9gr2ihvRQIgdGKnIJBaLR2QUaEDN2wOF+wGVz4hc+schgPYmnW3f/ECH0qdN7Ut+GIjfTou1QkefNtTnUJDHV/JzHZ+RUf/gIkCIBiPM1rWbi6DfywwXPrblZTQUq0QiVYbIAQKPEDuEeLw&quot;;
+
+
+String zbsign3 = MD5WithRSAUtil1.type_1(privateKey,pubKey,data3);
+vars.put(&quot;zbsign3&quot;,zbsign3);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="亚太流程(预生产)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">api.flins.com.cn</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json;charset=UTF-8</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="反馈承保数据" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appId&quot;: &quot;du1c3Ax4dYQzUZryGTog7oDT3567uHiX&quot;,&#xd;
+    &quot;appKey&quot;: &quot;key1&quot;,&#xd;
+    &quot;apiCode&quot;: &quot;feedbackInsurance&quot;,&#xd;
+    &quot;version&quot;: &quot;1.0&quot;,&#xd;
+    &quot;data&quot;: ${data3},  &#xd;
+    &quot;sign&quot;:&quot;${zbsign3}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/business/api/dispatch</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+import com.alibaba.fastjson.JSONObject;
+
+//提取bzid和serialNumber
+//String response_data = prev.getResponseDataAsString(); 
+//JSONObject object = JSONObject.parseObject(response_data);
+//JSONObject data = object.getJSONObject(&quot;data&quot;);
+//String ser = data.getString(&quot;serialNumber&quot;);
+//String b = data.getString(&quot;bzId&quot;);
+
+
+//获取第二个sign
+String data3 = &quot;{\r\n&quot; + 
+				&quot;        \&quot;bzId\&quot;:\&quot;bisss\&quot;,\r\n&quot; + 
+				&quot;        \&quot;serialNumber\&quot;:\&quot;\&quot;,\r\n&quot; + 
+				&quot;        \&quot;benefitCode\&quot;:\&quot;benefitcode004\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cpCode\&quot;:\&quot;cp003\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceNo\&quot;:\&quot;Insurance001\&quot;,\r\n&quot; + 
+				&quot;        \&quot;premium\&quot;:\&quot;2000\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cpName\&quot;:\&quot;亚太再保\&quot;,\r\n&quot; + 
+				&quot;        \&quot;productName\&quot;:\&quot;重疾险\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceStatus\&quot;:\&quot;正常\&quot; ,\r\n&quot; + 
+				&quot;        \&quot;cname\&quot;:\&quot;cname\&quot;,\r\n&quot; + 
+				&quot;        \&quot;idNumber\&quot;:\&quot;idnumber\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceTime\&quot;:\&quot;2019-01-01 11:11:11\&quot;,\r\n&quot; + 
+				&quot;        \&quot;createDate\&quot;:\&quot;2015-01-01 11:11:11\&quot;,\r\n&quot; + 
+				&quot;        \&quot;isCancel\&quot;:\&quot;true\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cancelTime\&quot;:\&quot;\&quot;\r\n&quot; + 
+				&quot;      }&quot;;
+				
+vars.put(&quot;data3&quot;,data3);
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIiSSzrzzHZc/e9Hr5YIqpwZTPa2eC/DY46aPaAqCCrwZfEN8y9DGRtS7gLrFnsv9GiP9yQ8DtzkVOuPueSmEN8CAwEAAQ==&quot;;
+String privateKey = &quot;MIIBUgIBADANBgkqhkiG9w0BAQEFAASCATwwggE4AgEAAkEAiJJLOvPMdlz970evlgiqnBlM9rZ4L8Njjpo9oCoIKvBl8Q3zL0MZG1LuAusWey/0aI/3JDwO3ORU64+55KYQ3wIDAQABAkA4cr9Fjp9kDOuoiyi4Crz56Ds3fhQPKeNsfbQbD0Rw+m0TP00uxPRQcvv1iH3WyYOiDpJJEhbdFwK3A038o3qBAiEA7fHH7o3q5YxXhTevcMHAyE5w2kcc9Szqu/ZHKG2FH9MCIQCS70eGsJi9QrPrqXiNsErIfvVWZyK64s1LZ9gr2ihvRQIgdGKnIJBaLR2QUaEDN2wOF+wGVz4hc+schgPYmnW3f/ECH0qdN7Ut+GIjfTou1QkefNtTnUJDHV/JzHZ+RUf/gIkCIBiPM1rWbi6DfywwXPrblZTQUq0QiVYbIAQKPEDuEeLw&quot;;
+
+
+String zbsign3 = MD5WithRSAUtil1.type_1(privateKey,pubKey,data3);
+vars.put(&quot;zbsign3&quot;,zbsign3);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="亚太流程(正式环境)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP请求默认值" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">bus.flins.com.cn</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json;charset=UTF-8</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="反馈承保数据" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appId&quot;: &quot;Wgz08FwuzvErmYizSiMPI85wtytVM0eaT&quot;,&#xd;
+    &quot;appKey&quot;: &quot;key1&quot;,&#xd;
+    &quot;apiCode&quot;: &quot;feedbackInsurance&quot;,&#xd;
+    &quot;version&quot;: &quot;1.0&quot;,&#xd;
+    &quot;data&quot;: ${data3},  &#xd;
+    &quot;sign&quot;:&quot;${zbsign3}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/business/api/dispatch</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import com.flins.test.MD5WithRSAUtil1;
+import com.alibaba.fastjson.JSONObject;
+
+//提取bzid和serialNumber
+//String response_data = prev.getResponseDataAsString(); 
+//JSONObject object = JSONObject.parseObject(response_data);
+//JSONObject data = object.getJSONObject(&quot;data&quot;);
+//String ser = data.getString(&quot;serialNumber&quot;);
+//String b = data.getString(&quot;bzId&quot;);
+
+
+//获取第二个sign
+String data3 = &quot;{\r\n&quot; + 
+				&quot;        \&quot;bzId\&quot;:\&quot;bisss\&quot;,\r\n&quot; + 
+				&quot;        \&quot;serialNumber\&quot;:\&quot;\&quot;,\r\n&quot; + 
+				&quot;        \&quot;benefitCode\&quot;:\&quot;benefitcode004\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cpCode\&quot;:\&quot;cp003\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceNo\&quot;:\&quot;Insurance001\&quot;,\r\n&quot; + 
+				&quot;        \&quot;premium\&quot;:\&quot;2000\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cpName\&quot;:\&quot;亚太再保\&quot;,\r\n&quot; + 
+				&quot;        \&quot;productName\&quot;:\&quot;重疾险\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceStatus\&quot;:\&quot;正常\&quot; ,\r\n&quot; + 
+				&quot;        \&quot;cname\&quot;:\&quot;cname\&quot;,\r\n&quot; + 
+				&quot;        \&quot;idNumber\&quot;:\&quot;idnumber\&quot;,\r\n&quot; + 
+				&quot;        \&quot;insuranceTime\&quot;:\&quot;\&quot;,\r\n&quot; + 
+				&quot;        \&quot;createDate\&quot;:\&quot;2015-01-01 11:11:11\&quot;,\r\n&quot; + 
+				&quot;        \&quot;isCancel\&quot;:\&quot;true\&quot;,\r\n&quot; + 
+				&quot;        \&quot;cancelTime\&quot;:\&quot;\&quot;\r\n&quot; + 
+				&quot;      }&quot;;
+vars.put(&quot;data3&quot;,data3);
+String pubKey = &quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMF2OfqfM/sqnqHq03LuHFCrYHmb96pT7SHIHeRkjI9Sm9PmAwDHbAalPXxhKp4Jc/eIqiBuaZrmbCSP8Yvg8DMCAwEAAQ==&quot;;
+String privateKey = &quot;MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAwXY5+p8z+yqeoerTcu4cUKtgeZv3qlPtIcgd5GSMj1Kb0+YDAMdsBqU9fGEqnglz94iqIG5pmuZsJI/xi+DwMwIDAQABAkAhDM2C30fGFNXc230cGUmFDoIAxIBe/M96AfH5XqQUp7/irTkyU6Z6Hbd8zIpJFNyq0EUXIcND9hYkx3XNZHIBAiEA8cXl9Be8Ivcc3oNbqHhZKzwFvVXNdBKlnd9DzrZDkPMCIQDM2I+/Kpo4jqjNlVQAyLEooxHhjjL3x4Nuz6Q+5L7zwQIhAKAk54ZhWlsGt/ajp8jVvqqmnV6mQOqLl2wVAQMhM2wFAiACEOkaP37AtUekky3+uAd5ZnOmt71x3FRKCNQaQkpewQIhAJmuA5BOOn+N5m/dptUr3Ye3/3J1gANEZyphTKJ7pw5k&quot;;
+
+
+String zbsign3 = MD5WithRSAUtil1.type_1(privateKey,pubKey,data3);
+vars.put(&quot;zbsign3&quot;,zbsign3);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="接口响应0000" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="650406311">&quot;code&quot;:&quot;0000&quot;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
